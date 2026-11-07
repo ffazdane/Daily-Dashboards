@@ -37,7 +37,7 @@ jobs:
           fi
           mkdir -p public/reports
           cp -r assets index.html .nojekyll public/
-          cp reports/*.html public/reports/
+          cp reports/*.html reports/*.png public/reports/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
