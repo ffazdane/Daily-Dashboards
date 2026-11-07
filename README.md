@@ -4,7 +4,7 @@ Public archive of FazDane daily market intelligence dashboards.
 
 ## Reports
 
-Interactive HTML reports: `reports/YYYY-MM-DD.html`. Historic reports from 2026-11-01 through 2026-11-06 are currently published. Reports are historical artifacts and financial data has not been independently revalidated for public publication.
+Interactive HTML reports: `reports/FazDane_Daily_Market_Dashboard_YYYY-MM-DD.html` (older links use `reports/YYYY-MM-DD.html`). Historic reports from 2026-11-01 through 2026-11-06 are currently published. Reports are historical artifacts and financial data has not been independently revalidated for public publication.
 
 ## GitHub Pages setup
 
@@ -12,7 +12,7 @@ Go to **Settings → Pages** of this repository, choose **GitHub Actions** as th
 
 ## Daily dashboard process
 
-GitHub Actions runs scripts/daily.py at 7 AM America/Chicago, on main pushes and on manual dispatch. The runner reads dated FRED CSV observations, renders HTML and a Chrome PNG, commits both with the archive index, deploys Pages, and checks the public bytes. Find deployed links in the Actions run summary. Missing series are labeled; if every observation is missing or over seven days old the job fails before committing. Finished dates are immutable on retries.
+GitHub Actions runs scripts/daily.py at 7 AM America/Chicago, on main pushes and on manual dispatch. The runner reads dated FRED CSV observations, renders the self-contained HTML report, commits it with the archive index, deploys Pages, and checks the public bytes. Find deployed links in the Actions run summary. Missing series are labeled; if every observation is missing or over seven days old the job fails before committing. Finished dates are immutable on retries.
 
 Select GitHub Actions as the Pages source and allow the workflow token to push archives to main. No custom secrets or data API keys are required. ChatGPT runs independently.
 
