@@ -19,3 +19,7 @@ To add a report, commit `reports/YYYY-MM-DD.html` (and optionally `reports/YYYY-
 ## Accuracy / responsibility
 
 Each archive entry remains unchanged as originally generated. Some market data may be incomplete or unverified. This is research content, not investment advice.
+
+## FazDane branding and disclaimer
+
+Use `assets/fazdane-logo.svg` for the public archive homepage and `../assets/fazdane-logo.svg` in dated reports. The logo asset is a compressed rendition of the uploaded FazDane Analytics mark, embedded for self-contained image loading on GitHub Pages. Retain the visible financial/research disclaimer in every dated report and on the homepage. New reports should include the same top brand bar, link back to the archive and disclaimer, while keeping tactical interpretations separate from verified market facts.
