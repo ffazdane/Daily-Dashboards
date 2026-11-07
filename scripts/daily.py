@@ -56,11 +56,12 @@ if not verified:
 
 html = render(today, cards, logo, disclaimer, vix)
 report.write_text(html, encoding="utf-8")
-row = f'<div class="row"><div class="date">{today}</div><div><a class="link" href="{report.as_posix()}">HTML ↗</a></div></div>'
+display_date = f"{today:%A, %B} {today.day}, {today.year}"
+row = f'<div class="row"><div><div class="date">{display_date}</div><small>{today}</small></div><div><a class="link" href="{report.as_posix()}">HTML ↗</a></div></div>'
 marker = '<div id="archive">'
 if archive.count(marker) != 1:
     raise SystemExit("Archive template changed")
-latest = f'<small>LATEST AVAILABLE DASHBOARD</small><h1>{today}</h1><p class="lead">Dated equity, volatility and Treasury observations.</p><a class="button" href="{report.as_posix()}">Open interactive dashboard</a></section>'
+latest = f'<small>LATEST AVAILABLE DASHBOARD</small><h1>{display_date}</h1><p class="lead">Dated equity, volatility and Treasury observations.</p><a class="button" href="{report.as_posix()}">Open interactive dashboard</a></section>'
 archive, count = re.subn(r'<small>LATEST AVAILABLE DASHBOARD</small>.*?</section>', latest, archive, flags=re.S)
 if count != 1:
     raise SystemExit("Latest report section missing")
