@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 today = datetime.now(ZoneInfo("America/Chicago")).date()
 report = Path(f"reports/{today}.html")
 snapshot = report.with_suffix(".png")
-upgrade = snapshot.exists() and report.exists() and 'name="fazdane-layout"' not in report.read_text(encoding="utf-8")
+upgrade = snapshot.exists() and report.exists() and 'content="regime-v3"' not in report.read_text(encoding="utf-8")
 if report.exists() and not upgrade:
     if not snapshot.exists():
         raise SystemExit("Existing report has no PNG; preserving original")
@@ -24,6 +24,7 @@ disclaimer = re.search(r'<section class="card" aria-labelledby="disclaimer-headi
 logo = base64.b64encode(Path("assets/fazdane-logo.svg").read_bytes()).decode()
 cards = []
 verified = 0
+vix = None
 for symbol, label, unit in [
     ("NASDAQCOM", "Nasdaq Composite", "points"),
     ("VIXCLS", "Cboe volatility index", "points"),
@@ -48,6 +49,8 @@ for symbol, label, unit in [
         stamp = stamps[0]
         fresh = (today - stamp).days <= 7
         verified += int(fresh)
+        if symbol == 'VIXCLS' and observations[stamp] > 0:
+            vix = (stamp, observations[stamp])
         status = "Source-verified" if fresh else "Stale observation"
         history = "".join(f"<li>{day} · {observations[day]:,.2f}</li>" for day in stamps[:7])
         body = f"<strong>{observations[stamp]:,.2f} {unit}</strong><p>{status} · {stamp}</p><details><summary>Recent observations</summary><ul>{history}</ul></details>"
@@ -55,7 +58,7 @@ for symbol, label, unit in [
 if not verified:
     raise SystemExit("No recent dated observations; retaining previous archive")
 
-html = render(today, cards, logo, disclaimer)
+html = render(today, cards, logo, disclaimer, vix)
 report.write_text(html, encoding="utf-8")
 width = 500 if today.weekday() >= 5 else 960
 chrome = ["google-chrome", "--headless", "--no-sandbox", "--disable-dev-shm-usage", "--hide-scrollbars"]
