@@ -41,9 +41,12 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
+          name: pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: public
       - id: deploy
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: pages-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Verify public files and post links
         env:
           BASE: ${{ steps.deploy.outputs.page_url }}
