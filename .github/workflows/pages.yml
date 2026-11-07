@@ -1,32 +1,55 @@
-name: Publish FazDane dashboard archive
+name: Daily market dashboard
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * *'
+      timezone: America/Chicago
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
-  deploy:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Check out site
-        uses: actions/checkout@v4
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      - uses: actions/checkout@v4
         with:
-          enablement: true
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
+          ref: main
+      - name: Generate and archive today's report
+        run: |
+          python3 scripts/daily.py
+          git add reports index.html
+          if ! git diff --cached --quiet; then
+            git config user.name github-actions[bot]
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "Archive daily dashboard"
+            git push origin HEAD:main
+          fi
+          mkdir public
+          cp -r assets reports index.html .nojekyll public/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
-      - name: Deploy static site
-        id: deployment
+          path: public
+      - id: deploy
         uses: actions/deploy-pages@v4
+      - name: Verify public files and post links
+        env:
+          BASE: ${{ steps.deploy.outputs.page_url }}
+        run: |
+          report=$(ls reports/????-??-??.html | sort | tail -1)
+          for path in index.html "$report" "${report%.html}.png"; do
+            curl -fsSL --retry 5 --retry-all-errors "${BASE%/}/$path?run=$GITHUB_RUN_ID" -o /tmp/live
+            cmp "$path" /tmp/live
+            echo "- [$path](${BASE%/}/$path)" >> "$GITHUB_STEP_SUMMARY"
+          done

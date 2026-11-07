@@ -12,9 +12,9 @@ Go to **Settings → Pages** of this repository, choose **GitHub Actions** as th
 
 ## Daily dashboard process
 
-Your 7AM ChatGPT automation creates downloadable HTML and PNG artifacts in a ChatGPT chat. It does **not** automatically store them in GitHub. A separate authenticated uploader/integration must transfer the daily files into `reports/`; then this site deploys on push. Do not claim automatic publication or daily posting until an uploader has been built and tested.
+GitHub Actions runs scripts/daily.py at 7 AM America/Chicago, on main pushes and on manual dispatch. The runner reads dated FRED CSV observations, renders HTML and a Chrome PNG, commits both with the archive index, deploys Pages, and checks the public bytes. Find deployed links in the Actions run summary. Missing series are labeled; if every observation is missing or over seven days old the job fails before committing. Finished dates are immutable on retries.
 
-To add a report, commit `reports/YYYY-MM-DD.html` (and optionally `reports/YYYY-MM-DD.png`) and update `index.html` with the new day. The Pages workflow will publish the resulting commit.
+Select GitHub Actions as the Pages source and allow the workflow token to push archives to main. No custom secrets or data API keys are required. ChatGPT runs independently.
 
 ## Accuracy / responsibility
 
