@@ -55,6 +55,11 @@ if not verified:
     raise SystemExit("No recent dated observations; retaining previous archive")
 
 html = render(today, cards, logo, disclaimer, vix)
+# Fail visibly rather than publishing a report missing the official FazDane logo.
+if 'alt="FazDane Analytics"' not in html or 'src="data:image/svg+xml;base64,' not in html:
+    raise SystemExit("Missing official FazDane Analytics logo in generated daily HTML")
+if 'disclaimer-heading' not in html:
+    raise SystemExit("Missing financial disclaimer in generated daily HTML")
 report.write_text(html, encoding="utf-8")
 display_date = f"{today:%A, %B} {today.day}, {today.year}"
 row = f'<div class="row"><div><div class="date">{display_date}</div><small>{today}</small></div><div><a class="link" href="{report.as_posix()}">HTML ↗</a></div></div>'
