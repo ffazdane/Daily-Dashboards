@@ -4,7 +4,7 @@ Public archive of FazDane daily market intelligence dashboards.
 
 ## Reports
 
-Interactive HTML reports: `reports/FazDane_Daily_Market_Dashboard_YYYY-MM-DD.html` (older links use `reports/YYYY-MM-DD.html`). Historic reports from 2026-11-01 through 2026-11-06 are currently published. Reports are historical artifacts and financial data has not been independently revalidated for public publication.
+Interactive HTML reports: `reports/FazDane_Daily_Market_Dashboard_YYYY-MM-DD.html` (older links use `reports/YYYY-MM-DD.html`). The archive contains dated HTML reports; older entries use the short name. Reports are historical artifacts and financial data has not been independently revalidated for public publication.
 
 ## Weekly breadth reports
 
@@ -12,7 +12,7 @@ Weekly FazDane market-breadth analyses live in `weekly-breadth/` (`FazDane_Weekl
 
 ## GitHub Pages setup
 
-Go to **Settings → Pages** of this repository, choose **GitHub Actions** as the build and deployment source. The included `.github/workflows/pages.yml` deploys the repository on pushes to `main` and can be run manually. After enabling Pages, verify the website address shown in GitHub (typically https://ffazdane.github.io/Daily-Dashboards/). Do **not** describe it as live before checking.
+Go to **Settings → Pages** of this repository, choose **GitHub Actions** as the build and deployment source. The included `.github/workflows/pages.yml` deploys HTML-only dashboard pages on pushes to `main`, on its schedule, and on manual dispatch. After enabling Pages, verify the website address shown in GitHub (typically https://ffazdane.github.io/Daily-Dashboards/). Do **not** describe it as live before checking.
 
 ## Daily dashboard process
 
@@ -27,3 +27,9 @@ Each archive entry remains unchanged as originally generated. Some market data m
 ## FazDane branding and disclaimer
 
 Use `assets/fazdane-logo.svg` for the public archive homepage and `../assets/fazdane-logo.svg` in dated reports. The logo asset is a compressed rendition of the uploaded FazDane Analytics mark, embedded for self-contained image loading on GitHub Pages. Retain the visible financial/research disclaimer in every dated report and on the homepage. New reports should include the same top brand bar, link back to the archive and disclaimer, while keeping tactical interpretations separate from verified market facts.
+
+## HTML-only publishing standard (November 2026)
+
+The public GitHub Pages archive is **HTML-only**. Do not commit or deploy dashboard PNG screenshots, and do not link to PNG files on the homepage. The separate ChatGPT briefing may still deliver a PNG snapshot locally to its user; that artifact must **not** be copied to this repository.
+
+FazDane branding is mandatory on every published dashboard: use the supplied logo (`assets/fazdane-logo.svg` or an embedded data URI), a visible research disclaimer, and a link to the archive homepage. Maintain proper mobile sizing. See [the reusable publishing skill](.agents/skills/fazdane-daily-dashboard/SKILL.md).
