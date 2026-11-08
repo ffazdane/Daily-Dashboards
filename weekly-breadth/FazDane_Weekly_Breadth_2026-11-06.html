@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FazDane Analytics — Weekly Breadth Analysis | November 6, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #0b0f17;
+  --surface: #111622;
+  --surface2:#171e2e;
+  --border:  #1e2a40;
+  --accent:  #00d4a0;
+  --accent2: #2979ff;
+  --gold:    #f0b429;
+  --red:     #ff4f5e;
+  --text:    #dce8f5;
+  --muted:   #6b7fa3;
+  --fh: 'Syne', sans-serif;
+  --fb: 'DM Sans', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);
+  font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+.topbar{height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin-bottom:48px;border-radius:2px}
+.header{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:36px;text-align:center}
+.header img.logo{width:200px;filter:drop-shadow(0 0 18px rgba(0,212,160,0.18))}
+.header h1{font-family:var(--fh);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;
+  letter-spacing:-0.02em;color:#fff;line-height:1.15}
+.header .sub{font-size:.9rem;color:var(--muted);font-weight:400;letter-spacing:.04em}
+.header .dateline{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,212,160,.08);border:1px solid rgba(0,212,160,.25);
+  border-radius:100px;padding:5px 16px;font-size:.78rem;font-weight:500;
+  color:var(--accent);letter-spacing:.05em;text-transform:uppercase}
+.header .dateline::before{content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+.divider.accent{border-top-color:var(--accent);opacity:.4}
+.section-label{font-family:var(--fh);font-size:.65rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.levels-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
+  border:1px solid var(--accent);border-radius:10px;overflow:hidden;margin-bottom:36px}
+.level-cell{background:var(--surface);padding:14px 8px;text-align:center;
+  border-right:1px solid var(--border);transition:background .2s}
+.level-cell:last-child{border-right:none}
+.level-cell:hover{background:var(--surface2)}
+.lc-label{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.lc-value{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:var(--accent)}
+.lc-sub{font-size:.62rem;color:var(--muted);margin-top:4px;font-style:italic}
+h2{font-family:var(--fh);font-size:1rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);margin:36px 0 12px;
+  display:flex;align-items:center;gap:10px}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{font-size:.95rem;color:var(--text);margin-bottom:14px;text-align:justify}
+strong{color:#fff;font-weight:500}
+.hl-green{color:var(--accent);font-weight:500}
+.hl-red{color:var(--red);font-weight:500}
+.hl-gold{color:var(--gold);font-weight:500}
+.hl-blue{color:var(--accent2);font-weight:500}
+.bullets{list-style:none;margin:0 0 16px;display:flex;flex-direction:column;gap:10px}
+.bullets li{padding-left:20px;position:relative;font-size:.93rem;color:var(--text)}
+.bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:.8rem;top:2px}
+.chart-wrap{background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin:16px 0 8px}
+.chart-wrap img,.chart-wrap svg{width:100%;display:block}
+.chart-caption{font-size:.75rem;color:var(--muted);font-style:italic;
+  text-align:center;padding:10px 16px 14px;background:var(--surface);
+  border-top:1px solid var(--border);line-height:1.5}
+.zones-table{width:100%;border-collapse:collapse;margin:16px 0;
+  border:1px solid var(--accent2);border-radius:10px;overflow:hidden;font-size:.88rem}
+.zones-table thead tr{background:var(--surface2)}
+.zones-table thead th{padding:10px 14px;text-align:left;font-family:var(--fh);
+  font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--border)}
+.zones-table tbody tr{background:var(--surface);border-bottom:1px solid var(--border)}
+.zones-table tbody tr:nth-child(even){background:var(--surface2)}
+.zones-table tbody tr:last-child{border-bottom:none}
+.zones-table td{padding:11px 14px;vertical-align:top;color:var(--text)}
+.zones-table td.priority-high,.priority-high{color:var(--accent);font-weight:600}
+.zones-table td.priority-med,.priority-med{color:var(--gold);font-weight:600}
+.zones-table td.priority-cond,.priority-cond{color:var(--muted);font-weight:500}
+.price-cell{font-family:var(--fh);color:#fff;font-size:.95rem}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.sum-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:16px 18px;border-left:3px solid var(--accent);
+  transition:transform .15s}
+.sum-card:hover{transform:translateY(-2px)}
+.sum-card.red{border-left-color:var(--red)}
+.sum-card.gold{border-left-color:var(--gold)}
+.sum-card.blue{border-left-color:var(--accent2)}
+.sum-card.green{border-left-color:var(--accent)}
+.sc-title{font-family:var(--fh);font-size:.75rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.sum-card.red  .sc-title{color:var(--red)}
+.sum-card.gold .sc-title{color:var(--gold)}
+.sum-card.blue .sc-title{color:var(--accent2)}
+.sum-card.green .sc-title{color:var(--accent)}
+.sum-card p{font-size:.83rem;color:var(--muted);margin:0;text-align:left}
+.fd-ticker-row{display:flex;align-items:center;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+.fd-ticker{display:inline-flex;align-items:center;gap:6px;background:var(--surface);
+  border:0.5px solid var(--border);border-radius:6px;padding:5px 12px;
+  font-size:12px;font-weight:500;color:var(--text)}
+.fd-ticker .sym{color:var(--accent2);font-weight:500}
+.arrow-up,.val-up{color:var(--accent)}
+.arrow-dn,.val-dn{color:var(--red)}
+.fd-session-badge{display:inline-flex;align-items:center;gap:5px;
+  background:rgba(41,121,255,.1);border:0.5px solid rgba(41,121,255,.25);
+  border-radius:6px;padding:5px 12px;font-size:11px;font-weight:400;
+  color:var(--accent2);letter-spacing:.04em;text-transform:uppercase}
+.fd-bottom-bar{background:#0d1320;border-top:0.5px solid var(--border);
+  padding:10px 40px;display:flex;align-items:center;justify-content:space-between;
+  border-radius:8px;margin-bottom:28px}
+.fd-author{font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.04em}
+.fd-author strong{color:var(--accent);font-weight:500}
+.fd-read-time{font-size:11px;color:var(--muted);letter-spacing:.04em}
+.fd-cat-pills{display:flex;gap:6px}
+.fd-pill{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;border:0.5px solid}
+.fd-pill.futures{color:var(--accent2);border-color:rgba(41,121,255,.35);background:rgba(41,121,255,.08)}
+.fd-pill.technical{color:var(--gold);border-color:rgba(240,180,41,.35);background:rgba(240,180,41,.08)}
+.fd-pill.swing{color:var(--accent);border-color:rgba(0,212,160,.35);background:rgba(0,212,160,.08)}
+.fd-pill.options{color:var(--red);border-color:rgba(255,79,94,.35);background:rgba(255,79,94,.08)}
+.fd-pill.macro{color:var(--muted);border-color:rgba(107,127,163,.35);background:rgba(107,127,163,.08)}
+.disclaimer{background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:18px 22px;margin-top:40px}
+.disclaimer p{font-size:.75rem;color:var(--muted);text-align:center;margin:0;line-height:1.6}
+.footer{text-align:center;margin-top:40px;font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.back{display:inline-block;font-size:.75rem;color:var(--muted);text-decoration:none;margin-bottom:18px;letter-spacing:.04em}.back:hover{color:var(--accent)}
+.footer span{color:var(--accent)}
+.logo-badge{background:#fff;border-radius:14px;padding:12px 22px;box-shadow:0 0 0 1px rgba(0,212,160,.25),0 0 28px rgba(0,212,160,.15)}
+.logo-badge img.logo{display:block;width:230px;max-width:60vw;height:auto;filter:none}
+.brand-lockup{font-family:var(--fh);font-weight:800;font-size:1.05rem;letter-spacing:.22em;
+  text-transform:uppercase;color:#fff}
+.brand-lockup b{color:var(--accent);font-weight:800}
+.wow-up{color:var(--accent);font-weight:500}.wow-dn{color:var(--red);font-weight:500}
+.source{font-size:.72rem;color:var(--muted);margin-top:-6px}
+@media(max-width:600px){
+  .levels-grid{grid-template-columns:repeat(3,1fr)}
+  .summary-grid{grid-template-columns:1fr}
+  .zones-table{font-size:.8rem}
+  .zones-table td,.zones-table th{padding:8px 6px;overflow-wrap:anywhere}
+  .zones-table{font-size:.74rem;table-layout:fixed}
+  .price-cell{font-size:.8rem}
+  .wrap{padding:32px 16px 60px}
+  .fd-bottom-bar{flex-direction:column;gap:8px;padding:12px 20px}
+  p{text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="wrap">
+  <a class="back" href="../index.html">← FazDane archive</a>
+
+  <header class="header">
+    <div class="logo-badge"><img class="logo" src="../assets/fazdane-logo.svg" alt="FazDane Analytics"></div>
+    <h1>Weekly Breadth: VIX Inverts, Breadth Holds</h1>
+    <p class="sub">Week of Nov 2–6, 2026 · S&amp;P 500 · Nasdaq · Russell 2000 · VIX Complex · Sentiment</p>
+    <div class="dateline">November 6, 2026 | Weekly Close</div>
+    <div class="fd-ticker-row">
+      <div class="fd-ticker"><span class="sym">SPX</span><span>7,376.86</span><span class="arrow-dn">▼</span><span class="val-dn">−2.7% wk</span></div>
+      <div class="fd-ticker"><span class="sym">NASDAQ</span><span>24,579</span><span class="arrow-dn">▼</span><span class="val-dn">−3.4% wk</span></div>
+      <div class="fd-ticker"><span class="sym">RUT</span><span>2,754</span><span class="arrow-dn">▼</span><span class="val-dn">−2.1% wk</span></div>
+      <div class="fd-ticker"><span class="sym">DOW</span><span>51,286</span><span class="arrow-dn">▼</span><span class="val-dn">−0.9% wk</span></div>
+      <div class="fd-ticker"><span class="sym">VIX</span><span class="val-dn">25.64</span></div>
+      <div class="fd-ticker"><span class="sym">F&amp;G</span><span class="val-dn">22</span></div>
+      <div class="fd-session-badge">Vol: Backwardation · Breadth: Resilient</div>
+    </div>
+  </header>
+
+  <div class="fd-bottom-bar">
+    <div class="fd-author">By &nbsp;<strong>FazDane Analytics</strong></div>
+    <div class="fd-cat-pills">
+      <span class="fd-pill technical">Breadth</span>
+      <span class="fd-pill options">Volatility</span>
+      <span class="fd-pill macro">Macro</span>
+    </div>
+    <div class="fd-read-time">~5 min read</div>
+  </div>
+
+  <hr class="divider accent">
+
+  <div class="section-label">Internals at a Glance</div>
+  <div class="levels-grid">
+    <div class="level-cell">
+      <div class="lc-label">VIX</div>
+      <div class="lc-value" style="color:var(--red)">25.64</div>
+      <div class="lc-sub">88th pctile · 28.18 Thu</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">VIX / VIX3M</div>
+      <div class="lc-value" style="color:var(--red)">1.04</div>
+      <div class="lc-sub">inverted · peak 1.10</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">VVIX</div>
+      <div class="lc-value" style="color:var(--red)">121.94</div>
+      <div class="lc-sub">highest this cycle</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">% &gt; 50-Day</div>
+      <div class="lc-value">39.0%</div>
+      <div class="lc-sub">4th weekly rise</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">Fear &amp; Greed</div>
+      <div class="lc-value" style="color:var(--red)">22</div>
+      <div class="lc-sub">extreme fear · 19 Thu</div>
+    </div>
+  </div>
+
+  <h2>Weekly Summary</h2>
+  <p>This was the market's <span class="hl-red">worst week since June</span>. The S&amp;P 500 fell <span class="hl-red">2.7%</span> and closed below its 30-week moving average, a long-term trend warning. The Nasdaq lost <span class="hl-red">3.4%</span>, its fourth straight weekly decline, and the Nasdaq-100 entered correction territory, about 12% below its Oct 6 record going into Friday. Stocks rallied Wednesday after the midterm elections, then Thursday's selloff erased an estimated $2.5 trillion as fears of tighter AI data-center rules hit semiconductors: the SOX fell about 12% in one day. Friday brought a partial bounce, with the Nasdaq up 1.09%.</p>
+  <p>Volatility crossed into a new regime. VIX closed above 20 for the first time in this cycle, peaked at <span class="hl-red">28.18</span> Thursday and finished at <span class="hl-gold">25.64</span>. The VIX/VIX3M ratio <span class="hl-red">inverted above 1.0</span> for the first time since April, the capitulation-style signal flagged in our last two reports. Yet underneath, breadth held: the share of US stocks above their 50-day rose for a <span class="hl-green">fourth straight week to 39.0%</span>, even as the indexes fell.</p>
+
+  <h2>Chart 1 — Breadth Keeps Rising as /NQ Keeps Falling</h2>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 800 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Percent of US stocks above 50 and 200 day averages over five weeks with Nasdaq futures levels">
+      <style>
+        .t{font-family:'DM Sans',sans-serif;fill:#6b7fa3;font-size:12px}
+        .d{font-family:'DM Sans',sans-serif;fill:#dce8f5;font-size:13px;font-weight:500}
+        .v{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;paint-order:stroke;stroke:#111622;stroke-width:5px;stroke-linejoin:round}
+      </style>
+      <g stroke="#1e2a40" stroke-width="1">
+        <line x1="60" y1="50" x2="730" y2="50"/><line x1="60" y1="84" x2="730" y2="84"/>
+        <line x1="60" y1="118" x2="730" y2="118"/><line x1="60" y1="152" x2="730" y2="152"/>
+        <line x1="60" y1="186" x2="730" y2="186"/><line x1="60" y1="220" x2="730" y2="220"/>
+      </g>
+      <g class="t" text-anchor="end">
+        <text x="52" y="54">45%</text><text x="52" y="88">40%</text><text x="52" y="122">35%</text>
+        <text x="52" y="156">30%</text><text x="52" y="190">25%</text><text x="52" y="224">20%</text>
+      </g>
+      <polyline points="100,91.5 245,101 390,96.2 535,90.8 680,101" fill="none" stroke="#2979ff" stroke-width="2.5"/>
+      <polyline points="100,177.2 245,174.4 390,128.9 535,100.3 680,90.8" fill="none" stroke="#00d4a0" stroke-width="2.5"/>
+      <g fill="#2979ff"><circle cx="100" cy="91.5" r="4.5"/><circle cx="245" cy="101" r="4.5"/><circle cx="390" cy="96.2" r="4.5"/><circle cx="535" cy="90.8" r="4.5"/><circle cx="680" cy="101" r="5"/></g>
+      <g fill="#00d4a0"><circle cx="100" cy="177.2" r="4.5"/><circle cx="245" cy="174.4" r="4.5"/><circle cx="390" cy="128.9" r="4.5"/><circle cx="535" cy="100.3" r="4.5"/><circle cx="680" cy="90.8" r="5"/></g>
+      <g class="v" style="fill:#2979ff" text-anchor="middle">
+        <text x="100" y="80">38.9%</text><text x="245" y="89">37.5%</text><text x="390" y="84">38.2%</text><text x="535" y="79">39.0%</text><text x="680" y="124">37.5%</text>
+      </g>
+      <g class="v" style="fill:#00d4a0" text-anchor="middle">
+        <text x="100" y="200">26.3%</text><text x="245" y="197">26.7%</text><text x="390" y="152">33.4%</text><text x="535" y="124">37.6%</text><text x="680" y="79">39.0%</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="100" y="244" class="d">Oct 9</text><text x="245" y="244" class="d">Oct 15</text><text x="390" y="244" class="d">Oct 23</text>
+        <text x="535" y="244" class="d">Oct 30</text><text x="680" y="244" class="d">Nov 6</text>
+        <text x="100" y="262" class="t" style="fill:#ff4f5e">/NQ 31,178</text>
+        <text x="390" y="262" class="t" style="fill:#ff4f5e">/NQ 29,175</text>
+        <text x="535" y="262" class="t" style="fill:#ff4f5e">/NQ 28,543</text>
+        <text x="680" y="262" class="t" style="fill:#ff4f5e">/NQ 27,108</text>
+      </g>
+      <rect x="420" y="18" width="12" height="12" rx="2" fill="#2979ff"/><text x="438" y="29" class="t">% above 200-day</text>
+      <rect x="570" y="18" width="12" height="12" rx="2" fill="#00d4a0"/><text x="588" y="29" class="t">% above 50-day</text>
+    </svg>
+    <div class="chart-caption">Figure 1: Share of ~4,800 US stocks above their 50- and 200-day moving averages over five weekly check-ins, with Nasdaq-100 futures (/NQ, Dec) beneath each date. Short-term breadth rose 12.7 points while /NQ fell about 13%; 50-day breadth has now crossed above 200-day breadth.</div>
+  </div>
+
+  <h2>Chart 2 — The Volatility Curve Is Upside Down</h2>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Volatility term structure on November 6 2026: VIX1D 28.73, VIX 25.64, VIX3M 24.60, November VIX future 23.69, December VIX future 22.18">
+      <style>
+        .t{font-family:'DM Sans',sans-serif;fill:#6b7fa3;font-size:12px}
+        .d{font-family:'DM Sans',sans-serif;fill:#dce8f5;font-size:13px;font-weight:500}
+        .v{font-family:'Syne',sans-serif;font-weight:700;font-size:15px}
+      </style>
+      <line x1="70" y1="240" x2="760" y2="240" stroke="#6b7fa3" stroke-width="1"/>
+      <rect x="95" y="60.4" width="90" height="179.6" rx="4" fill="#ff4f5e"/>
+      <rect x="235" y="79.75" width="90" height="160.25" rx="4" fill="#ff4f5e" opacity=".8"/>
+      <rect x="375" y="86.25" width="90" height="153.75" rx="4" fill="#f0b429"/>
+      <rect x="515" y="91.9" width="90" height="148.1" rx="4" fill="#2979ff"/>
+      <rect x="655" y="101.4" width="90" height="138.6" rx="4" fill="#2979ff" opacity=".75"/>
+      <line x1="70" y1="115" x2="760" y2="115" stroke="#0b0f17" stroke-width="1.5" stroke-dasharray="5 4" opacity=".9"/>
+      <text x="76" y="132" class="t" style="fill:#dce8f5;font-size:11px">VIX 20</text>
+      <g class="v" text-anchor="middle">
+        <text x="140" y="50" style="fill:#ff4f5e">28.73</text><text x="280" y="70" style="fill:#ff4f5e">25.64</text>
+        <text x="420" y="76" style="fill:#f0b429">24.60</text><text x="560" y="82" style="fill:#2979ff">23.69</text>
+        <text x="700" y="91" style="fill:#2979ff">22.18</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="140" y="260" class="d">VIX1D</text><text x="280" y="260" class="d">VIX</text><text x="420" y="260" class="d">VIX3M</text>
+        <text x="560" y="260" class="d">/VX Nov</text><text x="700" y="260" class="d">/VX Dec</text>
+        <text x="140" y="278" class="t">1 day</text><text x="280" y="278" class="t">30 days</text><text x="420" y="278" class="t">3 months</text>
+        <text x="560" y="278" class="t">Nov expiry</text><text x="700" y="278" class="t">Dec expiry</text>
+      </g>
+    </svg>
+    <div class="chart-caption">Figure 2: Volatility term structure at the Nov 6, 2026 close. In a calm market each later horizon prices higher volatility; this week the curve slopes down, with the shortest horizon most expensive. That is backwardation, the signature of acute near-term fear.</div>
+  </div>
+
+  <h2>Five-Week Internals Trend</h2>
+  <table class="zones-table">
+    <thead><tr><th>Gauge</th><th>Oct 9</th><th>Oct 15</th><th>Oct 23</th><th>Oct 30</th><th>Nov 6</th></tr></thead>
+    <tbody>
+      <tr><td>% &gt; 50-day</td><td class="price-cell">26.3%</td><td class="price-cell">26.7%</td><td class="price-cell">33.4%</td><td class="price-cell">37.6%</td><td class="price-cell" style="color:var(--accent)">39.0%</td></tr>
+      <tr><td>% &gt; 200-day</td><td class="price-cell">38.9%</td><td class="price-cell">37.5%</td><td class="price-cell">38.2%</td><td class="price-cell">39.0%</td><td class="price-cell" style="color:var(--red)">37.5%</td></tr>
+      <tr><td>/NQ (Dec)</td><td class="price-cell">31,178</td><td class="price-cell">—</td><td class="price-cell">29,175</td><td class="price-cell">28,543</td><td class="price-cell" style="color:var(--red)">27,108</td></tr>
+      <tr><td>/ES (Dec)</td><td class="price-cell">7,871</td><td class="price-cell">—</td><td class="price-cell">7,673</td><td class="price-cell">7,615</td><td class="price-cell" style="color:var(--red)">7,404</td></tr>
+      <tr><td>/RTY (Dec)</td><td class="price-cell">—</td><td class="price-cell">—</td><td class="price-cell">—</td><td class="price-cell">2,822</td><td class="price-cell" style="color:var(--red)">2,761</td></tr>
+      <tr><td>VIX</td><td class="price-cell">14.84</td><td class="price-cell">16.46</td><td class="price-cell">19.45</td><td class="price-cell">19.42</td><td class="price-cell" style="color:var(--red)">25.64</td></tr>
+      <tr><td>VVIX</td><td class="price-cell">84.88</td><td class="price-cell">92.57</td><td class="price-cell">109.70</td><td class="price-cell">106.43</td><td class="price-cell" style="color:var(--red)">121.94</td></tr>
+      <tr><td>SKEW</td><td class="price-cell">154.34</td><td class="price-cell">160.45</td><td class="price-cell">151.80</td><td class="price-cell">149.76</td><td class="price-cell">153.55</td></tr>
+      <tr><td>Equity P/C ($CPCE)</td><td class="price-cell">0.66</td><td class="price-cell">0.67</td><td class="price-cell">0.80</td><td class="price-cell">0.83</td><td class="price-cell">0.71</td></tr>
+      <tr><td>Index P/C ($CPCI)</td><td class="price-cell">1.11</td><td class="price-cell">0.99</td><td class="price-cell">1.10</td><td class="price-cell">1.03</td><td class="price-cell" style="color:var(--red)">1.25</td></tr>
+      <tr><td>Transports ($DJT)</td><td class="price-cell">19,804</td><td class="price-cell">20,107</td><td class="price-cell">20,042</td><td class="price-cell">20,329</td><td class="price-cell" style="color:var(--red)">19,775</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Breadth Read</h2>
+  <ul class="bullets">
+    <li><strong>Divergence is now extreme:</strong> 50-day breadth rose to 39.0% while /NQ fell another 5% on the week and is down about 13% since Oct 9. The composite breadth reading for all US stocks jumped from the <span class="hl-green">33rd to the 51st percentile</span> (5-year), back to "middling."</li>
+    <li><strong>The damage is in the Nasdaq-100:</strong> composite breadth for Nasdaq-100 members sits at the 33rd percentile and falling. Semiconductors and storage names took the hit: Micron about −22%, Marvell, Seagate and Western Digital each roughly −28%.</li>
+    <li><strong>Long-term trend slipped:</strong> stocks above the 200-day fell back to 37.5%, and the S&amp;P closed below its 30-week average. The repair is short-term only.</li>
+    <li><strong>Leadership rotated again:</strong> energy, last month's winner, fell about 12% as Brent dropped 13% on Iran de-escalation hopes. Homebuilders rallied 7–8% Wednesday; staples, healthcare and financials hit records early in the week before pulling back.</li>
+    <li><strong>Cyclicals cracked:</strong> Transports fell 2.7% on the week to 19,775, their lowest close in our five-week series.</li>
+  </ul>
+
+  <h2>Volatility — The Capitulation Signal Fired</h2>
+  <table class="zones-table">
+    <thead><tr><th>Gauge</th><th>Reading</th><th>What It Says</th><th>Tone</th></tr></thead>
+    <tbody>
+      <tr><td>VIX / VIX3M</td><td class="price-cell">1.04</td><td>Inverted Thursday (peak 1.10), first time since April. Historically a better entry than exit: SPY's median 1-month return after inversions was +2.54% (positive 74%) vs +1.56% for all days.</td><td class="priority-high">Contrarian +</td></tr>
+      <tr><td>VIX1D vs VIX</td><td class="price-cell">28.73 / 25.64</td><td>One-day vol above 30-day vol. Traders are bracing for an immediate event: October CPI on Tuesday.</td><td class="priority-cond" style="color:var(--red)">Stress</td></tr>
+      <tr><td>VVIX</td><td class="price-cell">121.94</td><td>Highest reading in our series. Demand for VIX upside is intense; volatility itself is volatile.</td><td class="priority-cond" style="color:var(--red)">Extreme</td></tr>
+      <tr><td>Implied vs realized</td><td class="price-cell">25.6 vs 20.0</td><td>Premium narrowed to +5.7 points. Realized swings have caught up with what options priced in October.</td><td class="priority-med">Converging</td></tr>
+      <tr><td>SKEW</td><td class="price-cell">153.55</td><td>Back up from 149.8: new tail protection is being bought into the selloff.</td><td class="priority-med">Rising</td></tr>
+      <tr><td>Put/call split</td><td class="price-cell">0.71 / 1.25</td><td>Equity traders bought calls on Friday's bounce, while institutions loaded index puts. Professionals are hedging, not chasing.</td><td class="priority-med">Mixed</td></tr>
+    </tbody>
+  </table>
+  <p>Record options activity backs up the stress read: <span class="hl-gold">112 million contracts</span> traded Thursday, 53% above October's daily average. Note that this year's earlier inversions were not clean bottoms: the March 26–30 episode saw SPY fall a further 3.8% before it ended. The signal points to a better 1–3 month window, not an immediate low.</p>
+
+  <h2>Sentiment &amp; Macro</h2>
+  <table class="zones-table">
+    <thead><tr><th>Gauge</th><th>Reading</th><th>Read</th><th>Tone</th></tr></thead>
+    <tbody>
+      <tr><td>CNN Fear &amp; Greed</td><td class="price-cell">22</td><td>Extreme fear; 19 at Thursday's close, 26 a week ago, 47 a month ago.</td><td class="priority-high">Contrarian +</td></tr>
+      <tr><td>AAII bull-bear spread</td><td class="price-cell">−14</td><td>Well below its +6 historical average. Retail is bearish.</td><td class="priority-high">Contrarian +</td></tr>
+      <tr><td>Jobs report</td><td class="price-cell">+165K</td><td>Payrolls far above the 65K estimate; wages +3.1% y/y. Strengthens the case for a December hike.</td><td class="priority-cond" style="color:var(--red)">Hawkish</td></tr>
+      <tr><td>Rates &amp; dollar</td><td class="price-cell">10y 4.86%</td><td>10-year down 7 bps on the week; 2-year up to 4.52%; DXY up to 102.3.</td><td class="priority-med">Mixed</td></tr>
+      <tr><td>Commodities</td><td class="price-cell">Brent $98</td><td>Oil down 13% on de-escalation hopes, easing an inflation pressure; gold up 5% to about $4,075.</td><td class="priority-high">Relief</td></tr>
+      <tr><td>Earnings</td><td class="price-cell">83% beat</td><td>Q3 growth tracking near +33%, but strong beats (Palantir −13%) are being sold.</td><td class="priority-med">Mixed</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Scenarios for Next Week</h2>
+  <table class="zones-table">
+    <thead><tr><th>Scenario</th><th>Trigger</th><th>What It Implies</th><th>Bias</th></tr></thead>
+    <tbody>
+      <tr><td>Washout bottom</td><td class="price-cell">VIX/VIX3M back below 1.0; VIX &lt; 22 after CPI</td><td>Inversion resolves; breadth already leading gives the bounce a broad base.</td><td class="priority-high">Bullish</td></tr>
+      <tr><td>Retest</td><td class="price-cell">SPX holds 7,240–7,350</td><td>Choppy retest of Thursday's lows with VIX 22–28; the typical path after a first inversion.</td><td class="priority-med">Neutral</td></tr>
+      <tr><td>Breakdown</td><td class="price-cell">VIX &gt; 28.18; SPX &lt; 7,240</td><td>Selling spreads beyond tech; 50-day breadth rolls over and the divergence fails.</td><td class="priority-cond" style="color:var(--red)">Bearish</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <h2>Summary &amp; Actionable Conclusions</h2>
+  <div class="summary-grid">
+    <div class="sum-card red">
+      <div class="sc-title">Regime Shift</div>
+      <p>VIX 25.6, VVIX 122, curve inverted. The calm 15–20 regime is over; expect wide daily ranges until the curve normalizes.</p>
+    </div>
+    <div class="sum-card green">
+      <div class="sc-title">Breadth Resilient</div>
+      <p>50-day breadth up a fourth week to 39% while /NQ fell 13% from Oct 9. This is a tech correction, not a broad liquidation.</p>
+    </div>
+    <div class="sum-card green">
+      <div class="sc-title">Capitulation Signals</div>
+      <p>VIX/VIX3M inversion, Fear &amp; Greed 22, AAII −14 and record options volume. Historically constructive over 1–3 months.</p>
+    </div>
+    <div class="sum-card red">
+      <div class="sc-title">Trend Damaged</div>
+      <p>S&amp;P below its 30-week average; Nasdaq-100 in correction; 200-day breadth back to 37.5%. Not a confirmed bottom yet.</p>
+    </div>
+    <div class="sum-card blue">
+      <div class="sc-title">Levels to Watch</div>
+      <p>VIX/VIX3M back under 1.0; VIX 28.18 Thursday high; SPX support 7,350 / 7,240, resistance 7,440 / 7,550; CPI Tuesday.</p>
+    </div>
+    <div class="sum-card gold">
+      <div class="sc-title">Trade Plan</div>
+      <p>Scale in rather than chase; favor equal-weight and breadth leaders over semis. Keep risk defined while VIX1D sits above VIX.</p>
+    </div>
+  </div>
+
+  <p class="source">Data: breadth, VIX percentile, realized volatility, term structure and futures settlements from thetrading.tools (Nov 6 close); index closes, weekly returns, sector moves, macro and earnings from Investrade, Alain Guillot and My Weekly Stock; Fear &amp; Greed from CNN; futures, VIX1D, VVIX, SKEW, put/call ratios and $DJT from FazDane's ThinkorSwim watchlist. Support and resistance levels are from a third-party weekly recap.</p>
+
+  <div class="disclaimer">
+    <p><strong>DISCLAIMER:</strong> This analysis is produced by FazDane Analytics for informational and educational purposes only. It does not constitute financial advice, an offer to buy or sell securities, or a solicitation. Futures and options trading involve substantial risk of loss. Past performance is not indicative of future results. Always conduct your own due diligence and consult a licensed financial professional before making investment decisions.</p>
+  </div>
+
+  <div class="footer">FazDane Analytics · <span>©</span> 2026</div>
+
+</div>
+</body>
+</html>

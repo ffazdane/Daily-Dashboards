@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FazDane Analytics — Market Breadth Insight | October 9, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #0b0f17;
+  --surface: #111622;
+  --surface2:#171e2e;
+  --border:  #1e2a40;
+  --accent:  #00d4a0;
+  --accent2: #2979ff;
+  --gold:    #f0b429;
+  --red:     #ff4f5e;
+  --text:    #dce8f5;
+  --muted:   #6b7fa3;
+  --fh: 'Syne', sans-serif;
+  --fb: 'DM Sans', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);
+  font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+.topbar{height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin-bottom:48px;border-radius:2px}
+.header{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:36px;text-align:center}
+.header img.logo{width:200px;filter:drop-shadow(0 0 18px rgba(0,212,160,0.18))}
+.header h1{font-family:var(--fh);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;
+  letter-spacing:-0.02em;color:#fff;line-height:1.15}
+.header .sub{font-size:.9rem;color:var(--muted);font-weight:400;letter-spacing:.04em}
+.header .dateline{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,212,160,.08);border:1px solid rgba(0,212,160,.25);
+  border-radius:100px;padding:5px 16px;font-size:.78rem;font-weight:500;
+  color:var(--accent);letter-spacing:.05em;text-transform:uppercase}
+.header .dateline::before{content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+.divider.accent{border-top-color:var(--accent);opacity:.4}
+.section-label{font-family:var(--fh);font-size:.65rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.levels-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
+  border:1px solid var(--accent);border-radius:10px;overflow:hidden;margin-bottom:36px}
+.level-cell{background:var(--surface);padding:14px 8px;text-align:center;
+  border-right:1px solid var(--border);transition:background .2s}
+.level-cell:last-child{border-right:none}
+.level-cell:hover{background:var(--surface2)}
+.lc-label{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.lc-value{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:var(--accent)}
+.lc-sub{font-size:.62rem;color:var(--muted);margin-top:4px;font-style:italic}
+h2{font-family:var(--fh);font-size:1rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);margin:36px 0 12px;
+  display:flex;align-items:center;gap:10px}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{font-size:.95rem;color:var(--text);margin-bottom:14px;text-align:justify}
+strong{color:#fff;font-weight:500}
+.hl-green{color:var(--accent);font-weight:500}
+.hl-red{color:var(--red);font-weight:500}
+.hl-gold{color:var(--gold);font-weight:500}
+.hl-blue{color:var(--accent2);font-weight:500}
+.bullets{list-style:none;margin:0 0 16px;display:flex;flex-direction:column;gap:10px}
+.bullets li{padding-left:20px;position:relative;font-size:.93rem;color:var(--text)}
+.bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:.8rem;top:2px}
+.chart-wrap{background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin:16px 0 8px}
+.chart-wrap img,.chart-wrap svg{width:100%;display:block}
+.chart-caption{font-size:.75rem;color:var(--muted);font-style:italic;
+  text-align:center;padding:10px 16px 14px;background:var(--surface);
+  border-top:1px solid var(--border);line-height:1.5}
+.zones-table{width:100%;border-collapse:collapse;margin:16px 0;
+  border:1px solid var(--accent2);border-radius:10px;overflow:hidden;font-size:.88rem}
+.zones-table thead tr{background:var(--surface2)}
+.zones-table thead th{padding:10px 14px;text-align:left;font-family:var(--fh);
+  font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--border)}
+.zones-table tbody tr{background:var(--surface);border-bottom:1px solid var(--border)}
+.zones-table tbody tr:nth-child(even){background:var(--surface2)}
+.zones-table tbody tr:last-child{border-bottom:none}
+.zones-table td{padding:11px 14px;vertical-align:top;color:var(--text)}
+.zones-table td.priority-high,.priority-high{color:var(--accent);font-weight:600}
+.zones-table td.priority-med,.priority-med{color:var(--gold);font-weight:600}
+.zones-table td.priority-cond,.priority-cond{color:var(--muted);font-weight:500}
+.price-cell{font-family:var(--fh);color:#fff;font-size:.95rem}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.sum-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:16px 18px;border-left:3px solid var(--accent);
+  transition:transform .15s}
+.sum-card:hover{transform:translateY(-2px)}
+.sum-card.red{border-left-color:var(--red)}
+.sum-card.gold{border-left-color:var(--gold)}
+.sum-card.blue{border-left-color:var(--accent2)}
+.sum-card.green{border-left-color:var(--accent)}
+.sc-title{font-family:var(--fh);font-size:.75rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.sum-card.red  .sc-title{color:var(--red)}
+.sum-card.gold .sc-title{color:var(--gold)}
+.sum-card.blue .sc-title{color:var(--accent2)}
+.sum-card.green .sc-title{color:var(--accent)}
+.sum-card p{font-size:.83rem;color:var(--muted);margin:0;text-align:left}
+.fd-ticker-row{display:flex;align-items:center;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+.fd-ticker{display:inline-flex;align-items:center;gap:6px;background:var(--surface);
+  border:0.5px solid var(--border);border-radius:6px;padding:5px 12px;
+  font-size:12px;font-weight:500;color:var(--text)}
+.fd-ticker .sym{color:var(--accent2);font-weight:500}
+.arrow-up,.val-up{color:var(--accent)}
+.arrow-dn,.val-dn{color:var(--red)}
+.fd-session-badge{display:inline-flex;align-items:center;gap:5px;
+  background:rgba(41,121,255,.1);border:0.5px solid rgba(41,121,255,.25);
+  border-radius:6px;padding:5px 12px;font-size:11px;font-weight:400;
+  color:var(--accent2);letter-spacing:.04em;text-transform:uppercase}
+.fd-bottom-bar{background:#0d1320;border-top:0.5px solid var(--border);
+  padding:10px 40px;display:flex;align-items:center;justify-content:space-between;
+  border-radius:8px;margin-bottom:28px}
+.fd-author{font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.04em}
+.fd-author strong{color:var(--accent);font-weight:500}
+.fd-read-time{font-size:11px;color:var(--muted);letter-spacing:.04em}
+.fd-cat-pills{display:flex;gap:6px}
+.fd-pill{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;border:0.5px solid}
+.fd-pill.futures{color:var(--accent2);border-color:rgba(41,121,255,.35);background:rgba(41,121,255,.08)}
+.fd-pill.technical{color:var(--gold);border-color:rgba(240,180,41,.35);background:rgba(240,180,41,.08)}
+.fd-pill.swing{color:var(--accent);border-color:rgba(0,212,160,.35);background:rgba(0,212,160,.08)}
+.fd-pill.options{color:var(--red);border-color:rgba(255,79,94,.35);background:rgba(255,79,94,.08)}
+.fd-pill.macro{color:var(--muted);border-color:rgba(107,127,163,.35);background:rgba(107,127,163,.08)}
+.disclaimer{background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:18px 22px;margin-top:40px}
+.disclaimer p{font-size:.75rem;color:var(--muted);text-align:center;margin:0;line-height:1.6}
+.footer{text-align:center;margin-top:40px;font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.back{display:inline-block;font-size:.75rem;color:var(--muted);text-decoration:none;margin-bottom:18px;letter-spacing:.04em}.back:hover{color:var(--accent)}
+.footer span{color:var(--accent)}
+.logo-badge{background:#fff;border-radius:14px;padding:12px 22px;box-shadow:0 0 0 1px rgba(0,212,160,.25),0 0 28px rgba(0,212,160,.15)}
+.logo-badge img.logo{display:block;width:230px;max-width:60vw;height:auto;filter:none}
+.brand-lockup{font-family:var(--fh);font-weight:800;font-size:1.05rem;letter-spacing:.22em;
+  text-transform:uppercase;color:#fff}
+.brand-lockup b{color:var(--accent);font-weight:800}
+.source{font-size:.72rem;color:var(--muted);margin-top:-6px}
+@media(max-width:600px){
+  .levels-grid{grid-template-columns:repeat(3,1fr)}
+  .summary-grid{grid-template-columns:1fr}
+  .zones-table{font-size:.8rem}
+  .zones-table td,.zones-table th{padding:9px 8px}
+  .fd-bottom-bar{flex-direction:column;gap:8px;padding:12px 20px}
+  p{text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="wrap">
+  <a class="back" href="../index.html">← FazDane archive</a>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-badge"><img class="logo" src="../assets/fazdane-logo.svg" alt="FazDane Analytics"></div>
+    <h1>Market Breadth Insight: Narrow Tape, Expensive Insurance</h1>
+    <p class="sub">S&amp;P 500 · Nasdaq-100 · All US Stocks · /ES · /NQ · Weekly Internals Review</p>
+    <div class="dateline">October 9, 2026 | Weekly Close</div>
+    <div class="fd-ticker-row">
+      <div class="fd-ticker"><span class="sym">/ESZ26</span><span>7,870.75</span><span class="arrow-up">▲</span><span class="val-up">+11.00</span></div>
+      <div class="fd-ticker"><span class="sym">/NQZ26</span><span>31,178.25</span><span class="arrow-up">▲</span><span class="val-up">+69.50</span></div>
+      <div class="fd-ticker"><span class="sym">/YMU26</span><span>51,612</span><span class="arrow-dn">▼</span><span class="val-dn">−195</span></div>
+      <div class="fd-ticker"><span class="sym">VIX</span><span>14.84</span></div>
+      <div class="fd-ticker"><span class="sym">SKEW</span><span class="val-dn">154.34</span></div>
+      <div class="fd-session-badge">Breadth Regime: Weak</div>
+    </div>
+  </header>
+
+  <div class="fd-bottom-bar">
+    <div class="fd-author">By &nbsp;<strong>FazDane Analytics</strong></div>
+    <div class="fd-cat-pills">
+      <span class="fd-pill futures">Futures</span>
+      <span class="fd-pill technical">Breadth</span>
+      <span class="fd-pill options">Options</span>
+    </div>
+    <div class="fd-read-time">~3 min read</div>
+  </div>
+
+  <hr class="divider accent">
+
+  <!-- KEY LEVELS -->
+  <div class="section-label">Internals at a Glance</div>
+  <div class="levels-grid">
+    <div class="level-cell">
+      <div class="lc-label">% &gt; 50-Day</div>
+      <div class="lc-value" style="color:var(--red)">26.3%</div>
+      <div class="lc-sub">6th pctile (1y)</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">% &gt; 200-Day</div>
+      <div class="lc-value" style="color:var(--red)">38.9%</div>
+      <div class="lc-sub">4th pctile (1y)</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">50 / 200 Ratio</div>
+      <div class="lc-value" style="color:var(--gold)">0.68</div>
+      <div class="lc-sub">10th pctile since 2010</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">CBOE SKEW</div>
+      <div class="lc-value" style="color:var(--red)">154.3</div>
+      <div class="lc-sub">98th pctile all-time</div>
+    </div>
+    <div class="level-cell">
+      <div class="lc-label">VIX</div>
+      <div class="lc-value">14.84</div>
+      <div class="lc-sub">calm surface</div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <h2>Market Update — Executive Summary</h2>
+  <p>Index futures closed the week near their highs, with <span class="hl-green">/ES at 7,870</span> and <span class="hl-green">/NQ at 31,178</span>. Underneath, participation kept deteriorating. Across roughly 4,800 US stocks, only <span class="hl-red">26.3% trade above their 50-day</span> and <span class="hl-red">38.9% above their 200-day</span> moving average, both near the bottom of their one-year range. Two weeks ago those readings were 28.2% and 41.2%, so the divergence widened while price held up.</p>
+  <p>The options market is pricing this fragility. <span class="hl-gold">SKEW at 154</span> means deep out-of-the-money S&amp;P puts are expensive, while <span class="hl-blue">VIX at 14.8</span> says everyday volatility is cheap. Institutions are insuring against a sharp drop rather than selling.</p>
+
+  <!-- BREADTH CHART -->
+  <h2>Chart — Participation by Timeframe</h2>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Percent of stocks above moving averages, all US stocks vs S&amp;P 500 members">
+      <style>
+        .t{font-family:'DM Sans',sans-serif;fill:#6b7fa3;font-size:13px}
+        .v{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;paint-order:stroke;stroke:#111622;stroke-width:5px;stroke-linejoin:round}
+        .lbl{font-family:'Syne',sans-serif;font-weight:700;fill:#dce8f5;font-size:13px;letter-spacing:.06em}
+      </style>
+      <!-- axis: x = 150 + pct*6 (0..100 -> 150..750) -->
+      <g stroke="#1e2a40" stroke-width="1">
+        <line x1="150" y1="40" x2="150" y2="290"/>
+        <line x1="300" y1="40" x2="300" y2="290"/>
+        <line x1="600" y1="40" x2="600" y2="290"/>
+        <line x1="750" y1="40" x2="750" y2="290"/>
+      </g>
+      <line x1="450" y1="30" x2="450" y2="290" stroke="#f0b429" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="450" y="22" class="t" text-anchor="middle" style="fill:#f0b429">50% — healthy participation line</text>
+      <text x="150" y="310" class="t" text-anchor="middle">0%</text>
+      <text x="300" y="310" class="t" text-anchor="middle">25%</text>
+      <text x="450" y="310" class="t" text-anchor="middle">50%</text>
+      <text x="600" y="310" class="t" text-anchor="middle">75%</text>
+      <text x="750" y="310" class="t" text-anchor="middle">100%</text>
+
+      <!-- 10-day -->
+      <text x="135" y="72" class="lbl" text-anchor="end">10-DAY</text>
+      <rect x="150" y="50" width="275.4" height="16" rx="3" fill="#2979ff"/>
+      <text x="431" y="63" class="v" style="fill:#2979ff">45.9%</text>
+      <rect x="150" y="70" width="408" height="16" rx="3" fill="#00d4a0"/>
+      <text x="564" y="83" class="v" style="fill:#00d4a0">68.0%</text>
+
+      <!-- 50-day -->
+      <text x="135" y="132" class="lbl" text-anchor="end">50-DAY</text>
+      <rect x="150" y="110" width="157.8" height="16" rx="3" fill="#2979ff"/>
+      <text x="314" y="123" class="v" style="fill:#2979ff">26.3%</text>
+      <rect x="150" y="130" width="211.2" height="16" rx="3" fill="#00d4a0"/>
+      <text x="367" y="143" class="v" style="fill:#00d4a0">35.2%</text>
+
+      <!-- 100-day -->
+      <text x="135" y="192" class="lbl" text-anchor="end">100-DAY</text>
+      <rect x="150" y="170" width="190.2" height="16" rx="3" fill="#2979ff"/>
+      <text x="346" y="183" class="v" style="fill:#2979ff">31.7%</text>
+      <rect x="150" y="190" width="234.6" height="16" rx="3" fill="#00d4a0"/>
+      <text x="391" y="203" class="v" style="fill:#00d4a0">39.1%</text>
+
+      <!-- 200-day -->
+      <text x="135" y="252" class="lbl" text-anchor="end">200-DAY</text>
+      <rect x="150" y="230" width="233.4" height="16" rx="3" fill="#2979ff"/>
+      <text x="390" y="243" class="v" style="fill:#2979ff">38.9%</text>
+      <rect x="150" y="250" width="286.8" height="16" rx="3" fill="#00d4a0"/>
+      <text x="443" y="263" class="v" style="fill:#00d4a0">47.8%</text>
+
+      <!-- legend -->
+      <rect x="560" y="200" width="12" height="12" rx="2" fill="#2979ff"/>
+      <text x="580" y="211" class="t">All US stocks (~4,800)</text>
+      <rect x="560" y="222" width="12" height="12" rx="2" fill="#00d4a0"/>
+      <text x="580" y="233" class="t">S&amp;P 500 members</text>
+    </svg>
+    <div class="chart-caption">Figure 1: Percentage of stocks above their 10-, 50-, 100- and 200-day moving averages at the October 9, 2026 close (StockCharts equivalents: $SPXA50R, $SPXA200R, $NYA50R). Only the short-term 10-day reading clears 50% for large caps; every trend timeframe sits below it.</div>
+  </div>
+
+  <!-- DIVERGENCE -->
+  <h2>Price vs Internals — The Divergence</h2>
+  <ul class="bullets">
+    <li><strong>Large caps vs everything else:</strong> S&amp;P 500 members beat the broad market on every timeframe (47.8% vs 38.9% above the 200-day). Leadership is concentrated in mega-caps, which is why /NQ keeps rising while the typical stock does not.</li>
+    <li><strong>Short-term bounce, long-term damage:</strong> the 10-day reading jumped <span class="hl-green">+14.5 points</span> in 20 sessions, but the 50-, 100- and 200-day readings fell <span class="hl-red">8.5 to 11.5 points</span>. That is a relief rally inside a weak regime, not repair.</li>
+    <li><strong>Dow split:</strong> /YM fell 195 points while /NQ gained, and Transports ($DJT) slipped. Cyclical confirmation is missing.</li>
+    <li><strong>50/200 ratio at 0.68:</strong> fast breadth is lagging slow breadth. It is not yet a washout (below 0.50), so the historically strongest buy setup has not triggered.</li>
+  </ul>
+
+  <!-- OPTIONS -->
+  <h2>Options Internals — Hedged Complacency</h2>
+  <table class="zones-table">
+    <thead><tr><th>Gauge</th><th>Reading</th><th>What It Says</th><th>Tone</th></tr></thead>
+    <tbody>
+      <tr><td>CBOE SKEW</td><td class="price-cell">154.34</td><td>Crash insurance is expensive; 94th percentile of the past year. Record is 183 (Feb 2025).</td><td class="priority-med">Caution</td></tr>
+      <tr><td>VIX / VIX1D</td><td class="price-cell">14.84 / 9.05</td><td>At-the-money volatility is cheap; the market expects quiet trading.</td><td class="priority-high">Calm</td></tr>
+      <tr><td>VVIX</td><td class="price-cell">84.88</td><td>Low demand for VIX upside, so volatility hedges are cheap to own.</td><td class="priority-high">Calm</td></tr>
+      <tr><td>Equity Put/Call ($CPCE)</td><td class="price-cell">0.66</td><td>Single-stock traders lean bullish, buying calls over puts.</td><td class="priority-med">Complacent</td></tr>
+      <tr><td>Index Put/Call ($CPCI)</td><td class="price-cell">1.11</td><td>Institutions are buying index puts as portfolio protection.</td><td class="priority-cond">Hedging</td></tr>
+    </tbody>
+  </table>
+  <p>History says high SKEW is not a timing signal on its own. Since 2014, extreme SKEW days were followed by slightly below-average 63-day returns (+2.4% vs a +3.3% baseline). The last two spikes at this level or above, August 2018 and February 2025, each preceded roughly a <span class="hl-red">20% S&amp;P drawdown within four months</span>, while the June 2021 record was followed by calm gains. The combination of narrow breadth and expensive tails is what deserves respect.</p>
+
+  <!-- TRIGGERS -->
+  <h2>What Would Change the Picture</h2>
+  <table class="zones-table">
+    <thead><tr><th>Trigger</th><th>Level</th><th>Historical Read</th><th>Signal</th></tr></thead>
+    <tbody>
+      <tr><td>Breadth thrust</td><td class="price-cell">50/200 &gt; 1.50</td><td>10 episodes: SPY median +5.4% over 20 days, higher 80% of the time.</td><td class="priority-high">Bullish</td></tr>
+      <tr><td>Washout</td><td class="price-cell">50/200 &lt; 0.50</td><td>13 episodes: SPY median +2.5% over 20 days, higher 85% of the time.</td><td class="priority-high">Buy setup</td></tr>
+      <tr><td>Regime repair</td><td class="price-cell">% &gt; 200d &gt; 50%</td><td>Breadth confirming price; divergence resolved to the upside.</td><td class="priority-med">Constructive</td></tr>
+      <tr><td>Leadership break</td><td class="price-cell">/NQ loses 50-day</td><td>Mega-caps roll over while breadth is already weak, the classic narrow-top failure.</td><td class="priority-cond" style="color:var(--red)">Bearish</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <!-- SUMMARY -->
+  <h2>Summary &amp; Actionable Conclusions</h2>
+  <div class="summary-grid">
+    <div class="sum-card red">
+      <div class="sc-title">Narrow Tape</div>
+      <p>Only 26% of stocks hold their 50-day while futures sit near highs. Index strength rests on a small group of leaders.</p>
+    </div>
+    <div class="sum-card gold">
+      <div class="sc-title">Expensive Tails</div>
+      <p>SKEW 154 with VIX under 15: quiet surface, costly crash insurance. Fragility is being hedged, not sold.</p>
+    </div>
+    <div class="sum-card blue">
+      <div class="sc-title">Levels to Watch</div>
+      <p>50/200 ratio below 0.50 (washout) or above 1.50 (thrust); % above 200-day reclaiming 50%.</p>
+    </div>
+    <div class="sum-card red">
+      <div class="sc-title">Do Not Chase</div>
+      <p>Long /ES and /NQ exposure is a mega-cap bet. Size lighter and keep stops tighter than normal.</p>
+    </div>
+    <div class="sum-card gold">
+      <div class="sc-title">Bias</div>
+      <p>Neutral to cautious. Trend intact on price, unconfirmed by participation; small caps remain the weak leg.</p>
+    </div>
+    <div class="sum-card green">
+      <div class="sc-title">Hedge Plan</div>
+      <p>With VIX and VVIX low, volatility protection is relatively cheap; selling deep OTM puts pays well but carries exactly the risk being priced.</p>
+    </div>
+  </div>
+
+  <p class="source">Data: breadth and SKEW statistics from thetrading.tools (Oct 9, 2026 close); futures, VIX complex and put/call ratios from ThinkorSwim watchlist.</p>
+
+  <div class="disclaimer">
+    <p><strong>DISCLAIMER:</strong> This analysis is produced by FazDane Analytics for informational and educational purposes only. It does not constitute financial advice, an offer to buy or sell securities, or a solicitation. Futures trading involves substantial risk of loss. Past performance is not indicative of future results. Always conduct your own due diligence and consult a licensed financial professional before making investment decisions.</p>
+  </div>
+
+  <div class="footer">FazDane Analytics · <span>©</span> 2026</div>
+
+</div>
+</body>
+</html>

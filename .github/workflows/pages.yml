@@ -38,6 +38,7 @@ jobs:
           mkdir -p public/reports
           cp -r assets index.html .nojekyll public/
           cp reports/*.html reports/*.png public/reports/
+          if [ -d weekly-breadth ]; then cp -r weekly-breadth public/; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

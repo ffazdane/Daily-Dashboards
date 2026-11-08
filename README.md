@@ -6,6 +6,10 @@ Public archive of FazDane daily market intelligence dashboards.
 
 Interactive HTML reports: `reports/FazDane_Daily_Market_Dashboard_YYYY-MM-DD.html` (older links use `reports/YYYY-MM-DD.html`). Historic reports from 2026-11-01 through 2026-11-06 are currently published. Reports are historical artifacts and financial data has not been independently revalidated for public publication.
 
+## Weekly breadth reports
+
+Weekly FazDane market-breadth analyses live in `weekly-breadth/` (`FazDane_Weekly_Breadth_YYYY-MM-DD.html`) and are listed in the **Weekly Breadth** section of the homepage, above Research. They use `../assets/fazdane-logo.svg`, link back to the archive and keep the disclaimer. The Pages workflow copies this folder into the published site; `scripts/daily.py` does not modify that section.
+
 ## GitHub Pages setup
 
 Go to **Settings → Pages** of this repository, choose **GitHub Actions** as the build and deployment source. The included `.github/workflows/pages.yml` deploys the repository on pushes to `main` and can be run manually. After enabling Pages, verify the website address shown in GitHub (typically https://ffazdane.github.io/Daily-Dashboards/). Do **not** describe it as live before checking.
