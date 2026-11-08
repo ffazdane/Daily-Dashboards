@@ -35,6 +35,31 @@ jobs:
             git commit -m "Archive daily dashboard"
             git push origin HEAD:main
           fi
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+
+          files = sorted(Path("reports").glob("FazDane_Daily_Market_Dashboard_????-??-??.html"))
+          if not files:
+              raise SystemExit("No dated FazDane HTML available")
+          latest = files[-1]
+          html = latest.read_text(encoding="utf-8")
+          class LogoCheck(HTMLParser):
+              found = False
+              def handle_starttag(self, tag, attrs):
+                  if tag == "img":
+                      a = dict(attrs)
+                      self.found |= ("fazdane" in a.get("alt","").lower()
+                                     and (a.get("src","").startswith("data:image/")
+                                          or "fazdane-logo.svg" in a.get("src","")))
+          checker = LogoCheck()
+          checker.feed(html)
+          if not checker.found:
+              raise SystemExit(f"{latest}: missing official FazDane logo image")
+          if "disclaimer" not in html.lower():
+              raise SystemExit(f"{latest}: missing financial disclaimer")
+          print(f"Validated FazDane logo and disclaimer in {latest}")
+          PY
           mkdir -p public/reports
           cp -r assets index.html .nojekyll public/
           cp reports/*.html public/reports/
