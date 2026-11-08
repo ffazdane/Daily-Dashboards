@@ -37,7 +37,7 @@ jobs:
           fi
           mkdir -p public/reports
           cp -r assets index.html .nojekyll public/
-          cp reports/*.html reports/*.png public/reports/
+          cp reports/*.html public/reports/
           if [ -d weekly-breadth ]; then cp -r weekly-breadth public/; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
@@ -53,7 +53,7 @@ jobs:
           BASE: ${{ steps.deploy.outputs.page_url }}
         run: |
           report=$(ls reports/FazDane_Daily_Market_Dashboard_????-??-??.html | sort | tail -1)
-          for path in index.html "$report" "${report%.html}.png"; do
+          for path in index.html "$report"; do
             curl -fsSL --retry 5 --retry-all-errors "${BASE%/}/$path?run=$GITHUB_RUN_ID" -o /tmp/live
             cmp "$path" /tmp/live
             echo "- [$path](${BASE%/}/$path)" >> "$GITHUB_STEP_SUMMARY"
