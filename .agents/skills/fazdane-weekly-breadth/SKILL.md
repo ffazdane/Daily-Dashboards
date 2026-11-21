@@ -73,7 +73,12 @@ File: `FazDane_Weekly_Breadth_YYYY-MM-DD.html` (Friday's date). Order:
 1. Top bar, FazDane logo on a white badge, H1 with the week's thesis, sub-line, pulsing dateline "<Date> | Weekly Close", ticker row (SPX, Nasdaq, Dow, RUT weekly %, VIX, Fear & Greed, regime badge with scorecard), bottom bar pills.
 2. Internals-at-a-glance grid (5 cells).
 3. Weekly Summary (2 paragraphs, highlighted numbers).
-4. **Breadth Chart Review**: a 2-column `.gallery` of the captured chart images (P&F and sector panels span both columns via `.wide`), each with a caption; then a table Chart | Reading | Signal (colored via `.zones-table td.sig-bull / sig-bear / sig-neu / sig-na`) | Note. Add a note for any data discrepancy (e.g. ThinkorSwim vs StockCharts put/call).
+4. **Chart-by-Chart Breadth Insights** (the core of the report; do not show charts as a bare gallery):
+   - Intro line with the tally of bearish / neutral / bullish charts, then a 14-tile signal strip (`.sig-strip` / `.sig-tile.bear|neu|bull`, each tile linking to its card).
+   - Four themed groups, each with a heading and a one-line question: **Breadth Momentum** ($NYSI daily, $NYSI weekly, $NYHL), **Participation** ($BPSPX, $BPNYA, $BPNDX), **Price Structure** ($SPX P&F, $NDX P&F, $NYA, index CandleGlance, sector CandleGlance), **Fear & Sentiment** ($VIX, $CPCE, Fear & Greed).
+   - One `.ci-card` per chart: the cropped chart image on the left (P&F charts and the sector panel as `.wide` cards with the image on top), and on the right a numbered title with a Bullish/Neutral/Bearish pill, stat chips with the exact readings taken from the chart, a 2-4 sentence insight explaining what the chart says and why it matters, and a "Watch next" line naming the specific level or event that would change the read.
+   - Note any data discrepancy inside the relevant card (e.g. ThinkorSwim vs StockCharts put/call).
+   - Keep the card data in a small Python list (key, number, title, signal, wide, stats, insight, watch) and render it, so next week only the readings and text change.
 5. Breadth Scorecard table + total.
 6. Inline SVG charts in brand colors (labels with dark text stroke): 6-week % above 50/200-day lines with /NQ under each date; one chart for the week's story (volatility term structure, implied vs realized, or index/sector bars).
 7. 6-week internals trend table (drop the oldest week, add the new one).

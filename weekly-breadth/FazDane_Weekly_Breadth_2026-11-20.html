@@ -149,6 +149,41 @@ strong{color:#fff;font-weight:500}
   p{text-align:left}
 }
 .zones-table td.sig-bull{color:var(--accent);font-weight:600}.zones-table td.sig-bear{color:var(--red);font-weight:600}.zones-table td.sig-neu{color:var(--gold);font-weight:600}.zones-table td.sig-na{color:var(--muted);font-style:italic}.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.gallery .chart-wrap{margin:0}.gallery .wide{grid-column:1/-1}@media(max-width:600px){.gallery{grid-template-columns:1fr}}
+
+.sig-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0 8px}
+.sig-tile{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--muted);border-radius:8px;padding:8px 8px 7px;min-width:0}
+.sig-tile:hover{background:var(--surface2)}
+.sig-tile .st-n{font-family:var(--fh);font-size:.62rem;color:var(--muted);letter-spacing:.1em}
+.sig-tile .st-t{font-size:.74rem;color:var(--text);font-weight:500;line-height:1.25;overflow-wrap:anywhere}
+.sig-tile .st-s{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.sig-tile.bear{border-top-color:var(--red)}.sig-tile.bear .st-s{color:var(--red)}
+.sig-tile.neu{border-top-color:var(--gold)}.sig-tile.neu .st-s{color:var(--gold)}
+.sig-tile.bull{border-top-color:var(--accent)}.sig-tile.bull .st-s{color:var(--accent)}
+.ci-group{margin-top:26px}
+.ci-group-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:4px}
+.ci-group-h span{font-family:var(--fh);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2)}
+.ci-group-h em{font-size:.8rem;color:var(--muted)}
+.ci-card{display:grid;grid-template-columns:1.2fr 1fr;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0;scroll-margin-top:16px}
+.ci-card.wide{grid-template-columns:1fr}
+.ci-img{background:#0b0f17;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--border)}
+.ci-card.wide .ci-img{border-right:none;border-bottom:1px solid var(--border);background:#fff}
+.ci-img img{width:100%;display:block}
+.ci-img.sm{background:#fff}
+.ci-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.ci-head{display:flex;align-items:center;gap:10px}
+.ci-head h3{font-family:var(--fh);font-size:.92rem;font-weight:700;color:#fff;line-height:1.3;flex:1;margin:0}
+.ci-num{font-family:var(--fh);font-weight:800;font-size:.72rem;color:var(--bg);background:var(--accent2);border-radius:6px;padding:3px 7px}
+.ci-sig{font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;border:1px solid;white-space:nowrap}
+.ci-sig.bear{color:var(--red);border-color:rgba(255,79,94,.4);background:rgba(255,79,94,.1)}
+.ci-sig.neu{color:var(--gold);border-color:rgba(240,180,41,.4);background:rgba(240,180,41,.1)}
+.ci-sig.bull{color:var(--accent);border-color:rgba(0,212,160,.4);background:rgba(0,212,160,.1)}
+.ci-stats{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--fh);font-size:.7rem;font-weight:600;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 8px}
+.ci-insight{font-size:.88rem;line-height:1.6;margin:0;text-align:left}
+.ci-watch{font-size:.8rem;color:var(--muted);border-left:3px solid var(--accent);padding:2px 0 2px 10px;line-height:1.5}
+.ci-watch b{display:block;font-family:var(--fh);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+@media(max-width:700px){.ci-card{grid-template-columns:1fr}.ci-img{border-right:none;border-bottom:1px solid var(--border)}.sig-strip{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:420px){.sig-strip{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
@@ -217,46 +252,158 @@ strong{color:#fff;font-weight:500}
   <p>The AI trade broke. The S&amp;P 500 fell <span class="hl-red">8.6%</span> to 6,910.39 on seven straight losing sessions, its worst week since April 2025, and closed in correction territory along with the Dow (−8.0%). The Nasdaq lost <span class="hl-red">10.0%</span>, its worst week since March 2020, and is now negative for 2026. Friday alone took the S&amp;P down 3.7% and the Nasdaq 5.3% as semiconductors fell <span class="hl-red">10.7%</span> and Nvidia <span class="hl-red">14%</span> on a reported SEC look at its accounting — despite beating earnings on Tuesday. Only 122 of 503 S&amp;P stocks rose on Friday.</p>
   <p>Everything sold at once: gold fell 8.9%, Bitcoin 7.9% and oil 5.6%, while VIX jumped <span class="hl-red">86%</span> to 35.89, its highest close of the year. The Fed minutes read hawkish, with a December hike now priced near 90%, yet the 10-year yield fell to 4.92% as money ran for safety. Breadth collapsed across every gauge — the composite of 14 indicators fell from the 41st to the <span class="hl-red">19th percentile</span>, regime "very weak" — and every StockCharts breadth gauge confirmed it: the S&amp;P, NYSE and Nasdaq-100 bullish-percent indexes all flipped to "Bear Confirmed," $SPX and $NDX gave point-and-figure sell signals, and NYSE new lows outnumbered new highs by 551. The one contrarian light is sentiment: CNN Fear &amp; Greed fell to 9.67. This is a washout. It is not yet a reversal.</p>
 
-  <h2>Breadth Chart Review — FazDane Chart Set</h2>
-  <p>All 14 charts in the FazDane chart set were captured from StockCharts and MacroMicro at the Nov 20 close. Readings below come straight from the charts.</p>
-  <div class="gallery">
-    <div class="chart-wrap"><img src="img/2026-11-20/nysi-daily.jpg" alt="$NYSI daily chart"><div class="chart-caption">$NYSI daily: −551.66, below its 50- and 200-day averages.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/nysi-weekly.jpg" alt="$NYSI weekly chart"><div class="chart-caption">$NYSI weekly: −283.93 on the week, far below both weekly averages.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/nyhl.jpg" alt="$NYHL daily chart"><div class="chart-caption">$NYHL: −551, below its lower Bollinger Band.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/vix.jpg" alt="$VIX daily chart"><div class="chart-caption">$VIX: 35.89 close, 40.03 intraday, outside its upper band.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/bpspx.jpg" alt="$BPSPX point and figure chart"><div class="chart-caption">$BPSPX P&amp;F: 35.80, Bear Confirmed Nov 17.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/bpndx.jpg" alt="$BPNDX point and figure chart"><div class="chart-caption">$BPNDX P&amp;F: 29.00, Bear Confirmed Nov 17 — oversold.</div></div>
-    <div class="chart-wrap wide"><img src="img/2026-11-20/spx-pnf.jpg" alt="$SPX point and figure chart"><div class="chart-caption">$SPX P&amp;F: Bearish Catapult Breakdown Nov 17; bearish objective 7,051 met.</div></div>
-    <div class="chart-wrap wide"><img src="img/2026-11-20/ndx-pnf.jpg" alt="$NDX point and figure chart"><div class="chart-caption">$NDX P&amp;F: Double Bottom Breakdown Nov 19; bearish objective 22,501.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/cpce.jpg" alt="$CPCE daily chart"><div class="chart-caption">$CPCE: 0.77 EOD, mid-to-upper Bollinger range.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/nya.jpg" alt="$NYA long-term chart"><div class="chart-caption">$NYA since 2000: oversold, secular uptrend intact.</div></div>
-    <div class="chart-wrap wide"><img src="img/2026-11-20/sectors.jpg" alt="Sector CandleGlance"><div class="chart-caption">Sector CandleGlance (20/50-day SMAs): only staples above its 50-day.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/indexes.jpg" alt="Index CandleGlance"><div class="chart-caption">$NDX, $SPX, IWM below both averages; $VIX far above.</div></div>
-    <div class="chart-wrap"><img src="img/2026-11-20/fear-greed.jpg" alt="CNN Fear and Greed latest stats"><div class="chart-caption">CNN Fear &amp; Greed: 9.67 (prior 15.87), via MacroMicro.</div></div>
+<h2>Chart-by-Chart Breadth Insights</h2>
+<p>All 14 charts in the FazDane chart set were captured from StockCharts and MacroMicro at the Nov 20 close. Each chart is shown with what it reads, what it means and what to watch next. Tally: <span class="hl-red">11 bearish</span>, <span class="hl-gold">2 neutral</span>, <span class="hl-green">1 bullish</span>.</p>
+<div class="sig-strip">
+<a class="sig-tile bear" href="#ci-nysi-daily"><span class="st-n">01</span><span class="st-t">$NYSI daily</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-nysi-weekly"><span class="st-n">02</span><span class="st-t">$NYSI weekly</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-nyhl"><span class="st-n">03</span><span class="st-t">$NYHL</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-bpspx"><span class="st-n">04</span><span class="st-t">$BPSPX</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-bpnya"><span class="st-n">05</span><span class="st-t">$BPNYA</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-bpndx"><span class="st-n">06</span><span class="st-t">$BPNDX</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-spx-pnf"><span class="st-n">07</span><span class="st-t">$SPX</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-ndx-pnf"><span class="st-n">08</span><span class="st-t">$NDX</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile neu" href="#ci-nya"><span class="st-n">09</span><span class="st-t">$NYA</span><span class="st-s">Neutral</span></a>
+<a class="sig-tile bear" href="#ci-indexes"><span class="st-n">10</span><span class="st-t">$NDX · $SPX · IWM · $VIX</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-sectors"><span class="st-n">11</span><span class="st-t">S&P Sector ETFs</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile bear" href="#ci-vix"><span class="st-n">12</span><span class="st-t">$VIX</span><span class="st-s">Bearish</span></a>
+<a class="sig-tile neu" href="#ci-cpce"><span class="st-n">13</span><span class="st-t">$CPCE</span><span class="st-s">Neutral</span></a>
+<a class="sig-tile bull" href="#ci-fear-greed"><span class="st-n">14</span><span class="st-t">CNN Fear & Greed Index</span><span class="st-s">Bullish</span></a>
+</div>
+<div class="ci-group"><div class="ci-group-h"><span>Breadth Momentum</span><em>Is the average stock gaining or losing ground?</em></div>
+<article class="ci-card" id="ci-nysi-daily">
+  <div class="ci-img"><img src="img/2026-11-20/nysi-daily.jpg" alt="$NYSI — McClellan Summation (daily) chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">01</span><h3>$NYSI — McClellan Summation (daily)</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">−551.66</span><span class="chip">Δ −88.55</span><span class="chip">MA50 −527.28</span><span class="chip">MA200 +68.85</span><span class="chip">RSI 36.5</span></div>
+    <p class="ci-insight">The Summation Index tracks cumulative advance-decline momentum. It is deeply negative and has slipped below its own 50-day average, so decliners have out-run advancers for weeks. The 200-day average is still positive, which tells you this is a sharp break inside what had been a healthy year, not a long bear market.</p>
+    <div class="ci-watch"><b>Watch next</b>A hook upward from below −500 has historically marked intermediate lows. The first repair signal is the line turning up and crossing back over its 50-day average.</div>
   </div>
-  <p><strong>Put/call note:</strong> StockCharts' end-of-day $CPCE for Nov 20 is 0.77, while the ThinkorSwim watchlist showed 1.02. StockCharts' value is the official end-of-day figure and is the one scored below; the watchlist series in the trend table is kept for week-to-week comparison.</p>
-
-  <table class="zones-table">
-    <thead><tr><th>Chart</th><th>Reading</th><th>Signal</th><th>Note</th></tr></thead>
-    <tbody>
-<tr><td>$NYSI daily</td><td>−551.66 (ratio-adj.), −88.55 on the day; 50-day MA −527.28, 200-day MA +68.85; RSI 36.5</td><td class="sig-bear">Bearish</td><td>Below zero, below both averages and still falling</td></tr>
-<tr><td>$NYSI weekly</td><td>−551.66, −283.93 on the week; 50-wk MA +118.12, 200-wk MA +275.63</td><td class="sig-bear">Bearish</td><td>Far below both weekly averages; no weekly turn yet</td></tr>
-<tr><td>$VIX daily</td><td>Close 35.89 (+26.2%), intraday high 40.03; above upper Bollinger Band 31.42; RSI 71.7</td><td class="sig-bear">Bearish</td><td>Spike outside the bands — a close back inside would mark a fear climax</td></tr>
-<tr><td>$NYHL daily</td><td>−551 (new lows exceed new highs); below lower Bollinger Band −476.74</td><td class="sig-bear">Bearish</td><td>Capitulation-level new lows</td></tr>
-<tr><td>$BPSPX P&amp;F</td><td>35.80, −7.60; Bear Confirmed Nov 17; falling O column</td><td class="sig-bear">Bearish</td><td>Approaching the 30 oversold zone; a reversal up from below 30 = bull alert</td></tr>
-<tr><td>$CPCE daily</td><td>0.77 (+0.15) EOD; Bollinger 0.45 / 0.65 / 0.85</td><td class="sig-neu">Neutral</td><td>Rising but not extreme; ThinkorSwim showed 1.02 (see note)</td></tr>
-<tr><td>$SPX P&amp;F</td><td>Bearish Catapult Breakdown Nov 17; bearish objective 7,051 met; O column to 6,900</td><td class="sig-bear">Bearish</td><td>Broke below the long-term bullish support line</td></tr>
-<tr><td>$NDX P&amp;F</td><td>Double Bottom Breakdown Nov 19; close 25,028.98 (−5.61%); bearish objective 22,501</td><td class="sig-bear">Bearish</td><td>Objective sits ~10% below Friday's close</td></tr>
-<tr><td>$BPNDX P&amp;F</td><td>29.00, −9.00; Bear Confirmed Nov 17</td><td class="sig-bear">Bearish</td><td>Below 30 = oversold; watch for a 6-point reversal up (bull alert)</td></tr>
-<tr><td>$BPNYA P&amp;F</td><td>34.85, −5.19; Bear Confirmed Nov 18</td><td class="sig-bear">Bearish</td><td>Broad NYSE participation nearing oversold</td></tr>
-<tr><td>$NYA long-term</td><td>22,657.82 (−2.08%); below lower Bollinger Band 23,132; RSI 27.8</td><td class="sig-neu">Neutral</td><td>Oversold short-term; the 26-year uptrend is intact</td></tr>
-<tr><td>Sector CandleGlance</td><td>Only XLP (+0.67%) above its 50-day; XLU and XLV on it; XLK −7.27%, XLC, XLI, XLB, XLE, XLF, XLY below 20- and 50-day</td><td class="sig-bear">Bearish</td><td>Defensive leadership only</td></tr>
-<tr><td>$NDX / $SPX / IWM / $VIX</td><td>$NDX 25,029, $SPX 6,910, IWM 256.61 — all below 20- and 50-day; $VIX far above both</td><td class="sig-bear">Bearish</td><td>No index holding its moving averages</td></tr>
-<tr><td>CNN Fear &amp; Greed</td><td>9.67 (prior close 15.87)</td><td class="sig-bull">Bullish</td><td>Single-digit extreme fear — contrarian</td></tr>
-
-    </tbody>
-  </table>
-
+</article>
+<article class="ci-card" id="ci-nysi-weekly">
+  <div class="ci-img"><img src="img/2026-11-20/nysi-weekly.jpg" alt="$NYSI — McClellan Summation (weekly) chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">02</span><h3>$NYSI — McClellan Summation (weekly)</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">−551.66</span><span class="chip">Week Δ −283.93</span><span class="chip">MA50 +118.12</span><span class="chip">MA200 +275.63</span><span class="chip">RSI 37.3</span></div>
+    <p class="ci-insight">On the weekly view this is the steepest drop of the cycle, taking the index far below both weekly averages. That makes it a weekly-scale breakdown, not a one-week shakeout.</p>
+    <div class="ci-watch"><b>Watch next</b>Weekly turns are slow. A weekly reversal would take several weeks, but it is the confirmation any daily low will need.</div>
+  </div>
+</article>
+<article class="ci-card" id="ci-nyhl">
+  <div class="ci-img"><img src="img/2026-11-20/nyhl.jpg" alt="$NYHL — NYSE New Highs minus New Lows chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">03</span><h3>$NYHL — NYSE New Highs minus New Lows</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">−551</span><span class="chip">Lower band −476.74</span><span class="chip">RSI 32.6</span></div>
+    <p class="ci-insight">New lows outnumber new highs by 551, outside the lower Bollinger Band. Readings this extreme reflect forced, indiscriminate selling — the kind of capitulation that tends to cluster near the end of a decline.</p>
+    <div class="ci-watch"><b>Watch next</b>Watch the next push lower: if prices fall again but new lows shrink, that positive divergence is the classic bottoming signature.</div>
+  </div>
+</article>
+</div>
+<div class="ci-group"><div class="ci-group-h"><span>Participation</span><em>How many stocks are still on point-and-figure buy signals?</em></div>
+<article class="ci-card" id="ci-bpspx">
+  <div class="ci-img"><img src="img/2026-11-20/bpspx.jpg" alt="$BPSPX — S&P 500 Bullish Percent chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">04</span><h3>$BPSPX — S&P 500 Bullish Percent</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">35.80</span><span class="chip">Δ −7.60</span><span class="chip">Bear Confirmed Nov 17</span><span class="chip">O column</span></div>
+    <p class="ci-insight">Only about 36% of S&P 500 stocks remain on P&F buy signals, and the column is still falling. Participation has broken down across the index, not just in the mega-caps.</p>
+    <div class="ci-watch"><b>Watch next</b>The 30 line is the oversold zone. A 6-point reversal up from near or below 30 would trigger a Bull Alert, historically a low-risk entry point.</div>
+  </div>
+</article>
+<article class="ci-card" id="ci-bpnya">
+  <div class="ci-img"><img src="img/2026-11-20/bpnya.jpg" alt="$BPNYA — NYSE Bullish Percent chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">05</span><h3>$BPNYA — NYSE Bullish Percent</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">34.85</span><span class="chip">Δ −5.19</span><span class="chip">Bear Confirmed Nov 18</span></div>
+    <p class="ci-insight">The broad NYSE confirms the S&P reading a day later: this is a market-wide retreat, not a tech-only problem.</p>
+    <div class="ci-watch"><b>Watch next</b>Same playbook as $BPSPX: watch for a reversal up from the low 30s.</div>
+  </div>
+</article>
+<article class="ci-card" id="ci-bpndx">
+  <div class="ci-img"><img src="img/2026-11-20/bpndx.jpg" alt="$BPNDX — Nasdaq-100 Bullish Percent chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">06</span><h3>$BPNDX — Nasdaq-100 Bullish Percent</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">29.00</span><span class="chip">Δ −9.00</span><span class="chip">Bear Confirmed Nov 17</span><span class="chip">Below 30</span></div>
+    <p class="ci-insight">Tech is the most washed-out group: under 30% of Nasdaq-100 stocks are on buy signals. Oversold readings like this are where bull alerts usually begin.</p>
+    <div class="ci-watch"><b>Watch next</b>Because it is already below 30, $BPNDX is the most likely place for the first Bull Alert — a reversal back toward 35.</div>
+  </div>
+</article>
+</div>
+<div class="ci-group"><div class="ci-group-h"><span>Price Structure</span><em>What do the trend charts say about support and objectives?</em></div>
+<article class="ci-card wide" id="ci-spx-pnf">
+  <div class="ci-img"><img src="img/2026-11-20/spx-pnf.jpg" alt="$SPX — Point & Figure chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">07</span><h3>$SPX — Point & Figure</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">Close 6,910.39</span><span class="chip">Catapult Breakdown Nov 17</span><span class="chip">Objective 7,051 — met</span><span class="chip">Below bullish support line</span></div>
+    <p class="ci-insight">The S&P 500 flipped to a P&F sell signal and the O column has fallen through the long-term bullish support line, turning the P&F trend bearish. The bearish price objective has already been met, so the measured downside from this pattern is complete; price is now inside the prior congestion zone from earlier in the year (roughly 6,700–6,950 on the chart).</p>
+    <div class="ci-watch"><b>Watch next</b>A rally into a new X column that tops the prior X column would be a double-top breakout and flip the signal back to buy.</div>
+  </div>
+</article>
+<article class="ci-card wide" id="ci-ndx-pnf">
+  <div class="ci-img"><img src="img/2026-11-20/ndx-pnf.jpg" alt="$NDX — Point & Figure chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">08</span><h3>$NDX — Point & Figure</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">Close 25,028.98 (−5.61%)</span><span class="chip">Double Bottom Breakdown Nov 19</span><span class="chip">Objective 22,501</span></div>
+    <p class="ci-insight">The Nasdaq-100 has a fresh sell signal with unfinished downside: the bearish objective sits about 10% below Friday's close. Price is dropping into a dense congestion band around 24,400–25,000, the first area where buyers stepped in before.</p>
+    <div class="ci-watch"><b>Watch next</b>Holding the 24,400–25,000 congestion would leave the objective unmet; a break below it opens the path toward 22,501.</div>
+  </div>
+</article>
+<article class="ci-card" id="ci-nya">
+  <div class="ci-img"><img src="img/2026-11-20/nya.jpg" alt="$NYA — NYSE Composite since 2000 chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">09</span><h3>$NYA — NYSE Composite since 2000</h3><span class="ci-sig neu">Neutral</span></div>
+    <div class="ci-stats"><span class="chip">22,657.82 (−2.08%)</span><span class="chip">Below lower band 23,132</span><span class="chip">RSI 27.8</span></div>
+    <p class="ci-insight">Short term the broad NYSE is oversold, with RSI below 30 and price outside its lower band. On the 26-year log chart the secular uptrend is intact; so far this is a correction inside a long bull market.</p>
+    <div class="ci-watch"><b>Watch next</b>RSI back above 30 and a close back inside the bands would be the first sign the selling is exhausted.</div>
+  </div>
+</article>
+<article class="ci-card" id="ci-indexes">
+  <div class="ci-img"><img src="img/2026-11-20/indexes.jpg" alt="$NDX · $SPX · IWM · $VIX — CandleGlance chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">10</span><h3>$NDX · $SPX · IWM · $VIX — CandleGlance</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">$NDX 25,029 −5.61%</span><span class="chip">$SPX 6,910 −3.70%</span><span class="chip">IWM 256.61 −2.88%</span><span class="chip">$VIX 35.89</span></div>
+    <p class="ci-insight">All three equity indexes are below their 20- and 50-day averages, with the 20-day rolling under the 50-day. Small caps fell least on Friday — a hint that the selling is concentrated in large-cap tech.</p>
+    <div class="ci-watch"><b>Watch next</b>Reclaiming the 20-day average is the first repair step for each index.</div>
+  </div>
+</article>
+<article class="ci-card wide" id="ci-sectors">
+  <div class="ci-img"><img src="img/2026-11-20/sectors.jpg" alt="S&P Sector ETFs — CandleGlance chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">11</span><h3>S&P Sector ETFs — CandleGlance</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">XLP only sector above 50-day</span><span class="chip">XLU, XLV at 50-day</span><span class="chip">XLK −7.27% Fri</span><span class="chip">Others below 20 & 50-day</span></div>
+    <p class="ci-insight">Only consumer staples is holding above its 50-day average, with utilities and health care sitting on theirs. Defensive-only leadership is typical of the late, fearful stage of a selloff; technology took the heaviest hit.</p>
+    <div class="ci-watch"><b>Watch next</b>Watch technology and discretionary for stabilization; a bounce led only by defensives would be a weak one.</div>
+  </div>
+</article>
+</div>
+<div class="ci-group"><div class="ci-group-h"><span>Fear & Sentiment</span><em>How scared is the crowd?</em></div>
+<article class="ci-card" id="ci-vix">
+  <div class="ci-img"><img src="img/2026-11-20/vix.jpg" alt="$VIX — Volatility Index chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">12</span><h3>$VIX — Volatility Index</h3><span class="ci-sig bear">Bearish</span></div>
+    <div class="ci-stats"><span class="chip">Close 35.89 (+26.2%)</span><span class="chip">High 40.03</span><span class="chip">Upper band 31.42</span><span class="chip">RSI 71.7</span></div>
+    <p class="ci-insight">VIX spiked far outside its upper Bollinger Band. Moves this stretched rarely persist; a close back inside the band after a spike has often marked a fear climax.</p>
+    <div class="ci-watch"><b>Watch next</b>A VIX close back below the upper band (about 31) would be the first sign the panic is peaking.</div>
+  </div>
+</article>
+<article class="ci-card" id="ci-cpce">
+  <div class="ci-img"><img src="img/2026-11-20/cpce.jpg" alt="$CPCE — Equity Put/Call Ratio chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">13</span><h3>$CPCE — Equity Put/Call Ratio</h3><span class="ci-sig neu">Neutral</span></div>
+    <div class="ci-stats"><span class="chip">0.77 EOD</span><span class="chip">Δ +0.15</span><span class="chip">Bands 0.45 / 0.65 / 0.85</span></div>
+    <p class="ci-insight">Equity put buying is rising but not extreme — retail traders have not yet capitulated with puts. ThinkorSwim showed 1.02 for the same day; StockCharts' end-of-day value is the official one used here.</p>
+    <div class="ci-watch"><b>Watch next</b>A spike above 0.90–1.00 on the official series often appears near lows.</div>
+  </div>
+</article>
+<article class="ci-card" id="ci-fear-greed">
+  <div class="ci-img"><img src="img/2026-11-20/fear-greed.jpg" alt="CNN Fear & Greed Index chart"></div>
+  <div class="ci-body">
+    <div class="ci-head"><span class="ci-num">14</span><h3>CNN Fear & Greed Index</h3><span class="ci-sig bull">Bullish</span></div>
+    <div class="ci-stats"><span class="chip">9.67</span><span class="chip">Prior 15.87</span><span class="chip">Extreme fear</span></div>
+    <p class="ci-insight">Single-digit readings are rare and reflect near-maximum fear. As a contrarian gauge, extreme fear has tended to precede better returns over the following one to three months — but it does not time the exact low.</p>
+    <div class="ci-watch"><b>Watch next</b>A rebound above 25 alongside improving breadth would confirm sentiment is turning.</div>
+  </div>
+</article>
+</div>
   <h2>Breadth Scorecard</h2>
   <table class="zones-table">
     <thead><tr><th>Signal</th><th>Reading</th><th>Score</th></tr></thead>
