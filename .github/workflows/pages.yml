@@ -66,6 +66,7 @@ jobs:
           if [ -d weekly-breadth ]; then cp -r weekly-breadth public/; fi
           if [ -d equity-analysis ]; then cp -r equity-analysis public/; fi
           if [ -d commodity ]; then cp -r commodity public/; fi
+          if [ -d cycles ]; then cp -r cycles public/; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
