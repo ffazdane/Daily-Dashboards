@@ -52,7 +52,7 @@ for symbol, label, unit in [
         body = f"<strong>{observations[stamp]:,.2f} {unit}</strong><p>{status} · {stamp}</p><details><summary>Recent observations</summary><ul>{history}</ul></details>"
     cards.append(f'<article><h2>{label}</h2>{body}<p><a href="{source}">FRED · {symbol}</a></p></article>')
 if not verified:
-    raise SystemExit("No recent dated observations; retaining previous archive")
+    print("No recent dated FRED observations; rendering explicitly unverified fields")
 
 html = render(today, cards, logo, disclaimer, vix)
 # Fail visibly rather than publishing a report missing the official FazDane logo.
