@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FazDane Analytics — Crash to Rulebook | Nov 26, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* VOICE: FazDane research desk — dark trading terminal, factual, sober.
+   IDEA: a regulator's case file — every crash is an exhibit, every rule its verdict.
+   PICTURE: drawdown depth bars + a two-sided crash/rule spine (tighten vs loosen).
+   COLOUR and TYPE: FazDane brand tokens (bg #0b0f17, teal, blue, gold, red); Syne + DM Sans.
+   LAYOUT: 860px column, charts first, then the era table, checks map, 2026 read. */
+:root{--bg:#0b0f17;--surface:#111622;--surface2:#171e2e;--border:#1e2a40;--accent:#00d4a0;--accent2:#2979ff;--gold:#f0b429;--red:#ff4f5e;--text:#dce8f5;--muted:#8a9cc0;--fh:'Syne',sans-serif;--fb:'DM Sans',sans-serif;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;min-width:0}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 80px}
+.topbar{height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin-bottom:44px}
+.header{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:24px;text-align:center}
+.back{align-self:flex-start;font-size:.82rem;color:var(--muted);text-decoration:none;padding:10px 0}.back:hover{color:var(--accent)}
+.header img.logo{width:200px;max-width:60vw;filter:drop-shadow(0 0 18px rgba(0,212,160,.18))}
+.brand{font-family:var(--fh);font-weight:800;font-size:1.5rem;letter-spacing:-.01em;color:#fff;filter:drop-shadow(0 0 18px rgba(0,212,160,.18))}
+.brand b{color:var(--accent);font-weight:800}.brand small{display:block;font-size:.6rem;letter-spacing:.3em;color:var(--muted);font-weight:600}
+.header h1{font-family:var(--fh);font-size:clamp(1.5rem,4.4vw,2.3rem);font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1.12;text-wrap:balance}
+.header .sub{font-size:.92rem;color:var(--muted);font-weight:400;max-width:620px}
+.dateline{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,160,.08);border:1px solid rgba(0,212,160,.25);border-radius:100px;padding:5px 16px;font-size:.78rem;font-weight:500;color:var(--accent);letter-spacing:.05em;text-transform:uppercase}
+.dateline::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@media(prefers-reduced-motion:reduce){.dateline::before{animation:none}}
+.fd-bottom-bar{background:#0d1320;border:1px solid var(--border);border-radius:10px;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.fd-author{font-size:12px;color:var(--muted)}.fd-author strong{color:var(--accent);font-weight:500}
+.fd-read-time{font-size:12px;color:var(--muted)}
+.fd-cat-pills{display:flex;gap:6px;flex-wrap:wrap}
+.fd-pill{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:100px;border:.5px solid}
+.fd-pill.macro{color:#a9b8d6;border-color:rgba(107,127,163,.45);background:rgba(107,127,163,.1)}
+.fd-pill.technical{color:var(--gold);border-color:rgba(240,180,41,.35);background:rgba(240,180,41,.08)}
+.fd-pill.options{color:var(--red);border-color:rgba(255,79,94,.35);background:rgba(255,79,94,.08)}
+.section-label{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.levels-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--accent);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.level-cell{background:var(--surface);padding:14px 8px;text-align:center;border-right:1px solid var(--border)}
+.level-cell:last-child{border-right:none}
+.lc-label{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.lc-value{font-family:var(--fh);font-size:clamp(1.05rem,2.6vw,1.4rem);font-weight:700;color:var(--accent);white-space:nowrap}
+.lc-value.r{color:var(--red)}.lc-value.g{color:var(--gold)}
+.lc-sub{font-size:.7rem;color:var(--muted);margin-top:3px;font-style:italic}
+h2{font-family:var(--fh);font-size:1rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin:40px 0 12px;display:flex;align-items:center;gap:10px}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{font-size:.97rem;margin-bottom:14px}
+strong{color:#fff;font-weight:500}
+.hl-green{color:var(--accent);font-weight:500}.hl-red{color:var(--red);font-weight:500}.hl-gold{color:var(--gold);font-weight:500}.hl-blue{color:#5c9bff;font-weight:500}
+.bullets{list-style:none;margin:0 0 16px;display:flex;flex-direction:column;gap:10px}
+.bullets li{padding-left:20px;position:relative;font-size:.95rem}
+.bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:.8rem;top:3px}
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:16px 0 8px}
+.chart-body{padding:18px 18px 10px}
+.chart-caption{font-size:.78rem;color:var(--muted);font-style:italic;text-align:center;padding:10px 16px 14px;border-top:1px solid var(--border);line-height:1.5}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{font:500 .82rem var(--fb);color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-height:44px;cursor:pointer}
+.tabs button[aria-pressed=true]{color:#0b0f17;background:var(--accent);border-color:var(--accent)}
+.tabs button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.bar-row{display:grid;grid-template-columns:118px minmax(0,1fr) 64px;align-items:center;gap:10px;padding:5px 0;position:relative}
+.bar-row .lab{font-size:.82rem;color:var(--text);line-height:1.25}
+.bar-row .lab span{display:block;font-size:.68rem;color:var(--muted)}
+.track{height:18px;background:var(--surface2);border-radius:0 4px 4px 0;position:relative}
+.fill{height:100%;border-radius:0 4px 4px 0;transition:width .5s ease}
+.bar-row .val{font-family:var(--fh);font-size:.86rem;font-weight:700;text-align:right;white-space:nowrap;color:#fff}
+.bar-row:hover .track{outline:1px solid var(--muted)}
+.tip{position:absolute;z-index:5;left:128px;top:-6px;transform:translateY(-100%);background:#0d1320;border:1px solid var(--accent2);border-radius:8px;padding:8px 11px;font-size:.78rem;max-width:300px;pointer-events:none;opacity:0;transition:opacity .15s}
+.bar-row:hover .tip,.bar-row:focus-within .tip,.bar-row:focus .tip{opacity:1}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+/* spine timeline */
+.spine{position:relative;padding:6px 0}
+.spine::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--border);transform:translateX(-1px)}
+.ev{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);align-items:center;margin:6px 0}
+.ev .yr{font-family:var(--fh);font-weight:700;font-size:.8rem;text-align:center;color:#fff;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:2px 0;position:relative;z-index:1}
+.ev.crash .yr{background:var(--red);border-color:var(--red);color:#0b0f17}
+.card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 11px;font-size:.8rem;line-height:1.4}
+.card b{display:block;font-weight:500;color:#fff;font-size:.84rem}
+.ev .L{margin-right:10px;border-right:3px solid var(--gold)}
+.ev .R{margin-left:10px;border-left:3px solid var(--accent)}
+.ev.crash .card{border-color:rgba(255,79,94,.5);background:rgba(255,79,94,.07)}
+.ev .L b::before{content:'▼ ';color:var(--gold);font-size:.7rem}
+.ev .R b::before{content:'▲ ';color:var(--accent);font-size:.7rem}
+.spine-head{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);font-family:var(--fh);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.spine-head span:first-child{color:var(--gold);text-align:right;padding-right:10px}
+.spine-head span:last-child{color:var(--accent);padding-left:10px}
+/* table */
+.zones-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.86rem;background:var(--surface);border:1px solid var(--accent2)}
+.zones-table thead th{padding:10px 12px;text-align:left;font-family:var(--fh);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--surface2);border-bottom:1px solid var(--border)}
+.zones-table td{padding:10px 12px;vertical-align:top;border-bottom:1px solid var(--border)}
+.zones-table tbody tr:nth-child(even){background:var(--surface2)}
+.price-cell{font-family:var(--fh);color:var(--red);font-weight:700;white-space:nowrap}
+.era{font-weight:500;color:#fff}
+/* checks map */
+.checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}
+.node{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px}
+.node h3{font-family:var(--fh);font-size:.85rem;letter-spacing:.04em;margin-bottom:4px}
+.node .who{font-size:.74rem;color:var(--muted);margin-bottom:8px}
+.node ul{list-style:none;font-size:.82rem;display:flex;flex-direction:column;gap:5px}
+.node li::before{content:'→ ';color:var(--accent2)}
+.node.c h3{color:#5c9bff}.node.e h3{color:var(--gold)}.node.r h3{color:var(--accent)}.node.j h3{color:#c9a7ff}.node.s h3{color:#fff}.node.m h3{color:var(--red)}
+/* breaker meter */
+.meter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0}
+.tier{border-radius:10px;padding:14px;border:1px solid var(--border);background:var(--surface)}
+.tier .pct{font-family:var(--fh);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;line-height:1}
+.tier .act{font-size:.8rem;color:var(--muted);margin-top:6px}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.sum-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;border-left:3px solid var(--accent)}
+.sum-card.red{border-left-color:var(--red)}.sum-card.gold{border-left-color:var(--gold)}.sum-card.blue{border-left-color:var(--accent2)}
+.sc-title{font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;color:var(--accent)}
+.sum-card.red .sc-title{color:var(--red)}.sum-card.gold .sc-title{color:var(--gold)}.sum-card.blue .sc-title{color:#5c9bff}
+.sum-card p{font-size:.86rem;color:#b6c4dd;margin:0}
+.sources{font-size:.8rem;color:var(--muted)}.sources li{margin:4px 0 4px 18px}.sources a{color:#5c9bff;overflow-wrap:anywhere}
+.disclaimer{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-top:36px}
+.disclaimer p{font-size:.76rem;color:var(--muted);text-align:center;margin:0;line-height:1.6}
+.footer{text-align:center;margin-top:30px;font-size:.74rem;color:var(--muted);letter-spacing:.05em}.footer span{color:var(--accent)}
+.note{font-size:.76rem;color:var(--muted);margin-top:6px}
+@media(max-width:640px){
+ .levels-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.level-cell{border-bottom:1px solid var(--border)}.level-cell:last-child{grid-column:1/-1}
+ .summary-grid,.checks{grid-template-columns:1fr}
+ .bar-row{grid-template-columns:88px minmax(0,1fr) 54px}.tip{left:0}
+ .ev,.spine-head{grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr)}.card{font-size:.74rem;padding:6px 8px}
+ .zones-table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack td{display:flow-root;border:0;padding:3px 10px;padding-inline-start:7.5em}.stack td::before{content:attr(data-l);float:left;width:7em;margin-inline-start:-7em;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
+ .meter{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="wrap">
+
+<header class="header">
+  <a class="back" href="../index.html">← FazDane archive</a>
+  <img class="logo" src="../assets/fazdane-logo.svg" alt="FazDane Analytics">
+  <h1>Crash to Rulebook: A Century of Market Drawdowns and the Regulations They Created</h1>
+  <p class="sub">S&amp;P 500 bear markets 1929–2026 · the laws, rules and safeguards that followed · and how the system checks itself</p>
+  <div class="dateline">Nov 26, 2026 | Macro Research</div>
+</header>
+
+<div class="fd-bottom-bar">
+  <div class="fd-author">By &nbsp;<strong>FazDane Analytics</strong></div>
+  <div class="fd-cat-pills"><span class="fd-pill macro">Macro</span><span class="fd-pill technical">Market History</span><span class="fd-pill options">Risk</span></div>
+  <div class="fd-read-time">~9 min read</div>
+</div>
+
+<div class="section-label">The record at a glance</div>
+<div class="levels-grid">
+  <div class="level-cell"><div class="lc-label">Worst drawdown</div><div class="lc-value r">−86%</div><div class="lc-sub">1929–32</div></div>
+  <div class="level-cell"><div class="lc-label">Worst post-war</div><div class="lc-value r">−57%</div><div class="lc-sub">2007–09 GFC</div></div>
+  <div class="level-cell"><div class="lc-label">Fastest bear</div><div class="lc-value g">33 days</div><div class="lc-sub">Feb–Mar 2020</div></div>
+  <div class="level-cell"><div class="lc-label">Crash → rule</div><div class="lc-value">~2 yrs</div><div class="lc-sub">typical lag</div></div>
+  <div class="level-cell"><div class="lc-label">2026 max DD</div><div class="lc-value g">−8.9%</div><div class="lc-sub">YTD to Nov 6</div></div>
+</div>
+
+<p><strong>The pattern is remarkably consistent:</strong> a <span class="hl-red">drawdown exposes a hidden weakness</span>, public anger forces Washington to act within roughly <span class="hl-blue">one to three years</span>, a <span class="hl-green">new safeguard</span> is built — and then, over the following decade or two of calm, <span class="hl-gold">the rules are loosened</span> until the next break. Every major U.S. market safeguard investors rely on today — the SEC, FDIC insurance, SIPC, circuit breakers, PCAOB audits, bank stress tests — was born from a specific crash.</p>
+
+<h2>Chart 1 — How deep and how long</h2>
+<div class="chart-wrap"><div class="chart-body">
+  <div class="tabs" role="group" aria-label="Metric">
+    <button id="t-depth" aria-pressed="true">Depth (peak → trough)</button>
+    <button id="t-time" aria-pressed="false">Months underwater</button>
+  </div>
+  <div id="bars"></div>
+  <div class="legend"><span><i style="background:var(--red)"></i>Bear market (≥20% close-to-close)</span><span><i style="background:var(--gold)"></i>Correction / near-bear</span></div>
+</div><div class="chart-caption">Figure 1: S&amp;P 500 peak-to-trough declines on closing prices (1929–32 uses the S&amp;P composite). "Months underwater" counts from the prior peak to a new closing high (nominal). Hover or tap a bar for the trigger and the regulatory response. 2026 is still recovering.</div></div>
+
+<h2>Chart 2 — The regulatory pendulum</h2>
+<p>Crashes (red) pull the pendulum toward <span class="hl-green">tightening</span>; long bull runs push it back toward <span class="hl-gold">loosening</span>. Notice that each big deregulation wave preceded the next big crash — and that 2025–26 is firmly on the loosening side.</p>
+<div class="chart-wrap"><div class="chart-body">
+  <div class="spine-head"><span>Loosened ▼</span><span></span><span>▲ Tightened</span></div>
+  <div class="spine" id="spine"></div>
+</div><div class="chart-caption">Figure 2: Major U.S. financial-market rule changes, 1929–2026. Red years mark the market break; teal cards (right) added protections, gold cards (left) removed or relaxed them.</div></div>
+
+<h2>Era by era — what broke and what fixed it</h2>
+<table class="zones-table stack">
+<thead><tr><th>Drawdown</th><th>Depth</th><th>What broke</th><th>Government response</th><th>Check it created</th></tr></thead>
+<tbody id="eras"></tbody>
+</table>
+
+<h2>Chart 3 — How fast does Washington react?</h2>
+<div class="chart-wrap"><div class="chart-body"><div id="lag"></div></div>
+<div class="chart-caption">Figure 3: Years from the market break (or prior peak) to the signature regulatory response. Fast fixes are usually technical (trading halts); structural laws take Congress about two years.</div></div>
+<p>The speed depends on <strong>who can act</strong>. Exchanges and the SEC can change <span class="hl-blue">trading mechanics</span> in weeks — single-stock circuit breakers arrived about a month after the 2010 Flash Crash. Structural reform that needs <span class="hl-blue">Congress</span> (the 1930s Acts, Sarbanes-Oxley, Dodd-Frank) typically lands 2–5 years later, often after the market has already bottomed.</p>
+
+<h2>Built-in brakes: market-wide circuit breakers</h2>
+<p>Born from the 1987 crash (when the Dow lost 22.6% in a single day with no pause button) and recalibrated after the 2010 Flash Crash, today's S&amp;P 500-based halts are:</p>
+<div class="meter">
+  <div class="tier" style="border-top:3px solid var(--gold)"><div class="pct" style="color:var(--gold)">−7%</div><div class="act"><strong>Level 1</strong> · 15-minute halt (if before 3:25 pm ET)</div></div>
+  <div class="tier" style="border-top:3px solid #ff8a4f"><div class="pct" style="color:#ff8a4f">−13%</div><div class="act"><strong>Level 2</strong> · 15-minute halt (if before 3:25 pm ET)</div></div>
+  <div class="tier" style="border-top:3px solid var(--red)"><div class="pct" style="color:var(--red)">−20%</div><div class="act"><strong>Level 3</strong> · trading closed for the rest of the day</div></div>
+</div>
+<p>Level 1 fired <span class="hl-red">four times in March 2020</span> (Mar 9, 12, 16, 18). Individual stocks are also fenced by <strong>Limit Up–Limit Down</strong> bands, introduced after the Flash Crash.</p>
+
+<h2>Checks and balances — who watches whom</h2>
+<p>No single body controls market regulation. Each layer can push, block or reverse another — which is why rules both <span class="hl-green">get built after crashes</span> and <span class="hl-gold">get unwound in calm periods</span>.</p>
+<div class="checks">
+  <div class="node c"><h3>Congress</h3><div class="who">Legislates · funds · oversees</div><ul><li>Writes the statutes (1933/34 Acts, SOX, Dodd-Frank, GENIUS)</li><li>Can repeal rules (EGRRCPA 2018) or veto via Congressional Review Act</li><li>Confirms regulators; holds hearings</li></ul></div>
+  <div class="node e"><h3>Executive</h3><div class="who">President · Treasury · FSOC</div><ul><li>Appoints SEC, CFTC, Fed, FDIC leaders</li><li>Treasury chairs FSOC &amp; the President's Working Group (est. 1988)</li><li>Sets the deregulatory or enforcement tone</li></ul></div>
+  <div class="node r"><h3>Independent regulators</h3><div class="who">SEC · CFTC · Fed · FDIC · OCC</div><ul><li>Write and enforce rules within their statutes</li><li>Fed is lender of last resort; FDIC insures deposits</li><li>Bank capital &amp; stress tests (post-2010)</li></ul></div>
+  <div class="node j"><h3>Courts</h3><div class="who">Judicial review</div><ul><li><em>Loper Bright</em> (2024) ended Chevron deference to agencies</li><li><em>SEC v. Jarkesy</em> (2024) — jury trials for SEC fraud penalties</li><li>5th Circuit vacated SEC private-fund adviser rules (2024)</li></ul></div>
+  <div class="node s"><h3>Self-regulators</h3><div class="who">FINRA · exchanges · PCAOB</div><ul><li>FINRA (ex-NASD, 1938 Maloney Act) polices brokers</li><li>Exchanges run circuit breakers &amp; LULD</li><li>PCAOB (SOX 2002) inspects auditors</li></ul></div>
+  <div class="node m"><h3>Market &amp; public</h3><div class="who">Investors · press · states</div><ul><li>Prices punish bad policy fast (April 2025 tariff pause)</li><li>Whistleblowers, journalists, short sellers expose fraud</li><li>State AGs &amp; regulators fill federal gaps</li></ul></div>
+</div>
+
+<h2>Where we are now — 2025 to 2026</h2>
+<ul class="bullets">
+  <li><strong>April 2025 tariff shock:</strong> the S&amp;P 500 fell 18.9% on a closing basis (21.4% intraday) from the Feb 19 high to the April 8 low. The "check" here was not a regulation but a policy reversal — the April 9 90-day tariff pause produced a 9.5% one-day rally, and the index recovered its losses within months.</li>
+  <li><strong>2026 drawdowns stayed shallow:</strong> the Iran-war sell-off from late February took the S&amp;P to roughly 9% below its high in late March; State Street puts the index's maximum 2026 drawdown at <span class="hl-gold">8.9%</span>, even as global semiconductors fell nearly <span class="hl-red">30%</span> from peak by Nov 6.</li>
+  <li><strong>Bank capital loosened:</strong> the Fed, FDIC and OCC finalized a cut to the enhanced supplementary leverage ratio for the largest banks on Nov 25, 2025 (effective April 1, 2026), over dissents from Fed Governors Barr and Cook.</li>
+  <li><strong>New framework for stablecoins:</strong> the GENIUS Act (signed July 18, 2025) created the first federal stablecoin regime — new rules, but designed to grow the industry.</li>
+  <li><strong>SEC reset:</strong> Chair Atkins withdrew a slate of Gensler-era proposals, is pursuing a "minimum effective dose" disclosure regime, has proposed rescinding the climate-disclosure rule, and is weighing semiannual instead of quarterly reporting.</li>
+</ul>
+<p><strong>FazDane read:</strong> the pendulum is in a <span class="hl-gold">loosening phase</span> similar to 1999–2006 and 2017–19. That does not predict a crash — those phases also coincided with strong markets — but it does mean the <span class="hl-red">shock absorbers are thinner</span> going into the next stress event, and history says the response will come <em>after</em> the damage, not before.</p>
+
+<h2>Summary &amp; actionable conclusions</h2>
+<div class="summary-grid">
+  <div class="sum-card red"><div class="sc-title">Crashes write the rules</div><p>Nearly every safeguard — SEC, FDIC, SIPC, circuit breakers, PCAOB, stress tests — was a direct reaction to a specific drawdown.</p></div>
+  <div class="sum-card gold"><div class="sc-title">Rules erode in calm</div><p>Glass-Steagall lasted 66 years; Dodd-Frank's bank thresholds were raised in 8. SVB failed 5 years after that rollback.</p></div>
+  <div class="sum-card blue"><div class="sc-title">Reaction lag ≈ 2 years</div><p>Trading-mechanic fixes take weeks; Congress takes years. Don't expect regulation to rescue a falling market.</p></div>
+  <div class="sum-card green"><div class="sc-title">Breakers buy time, not floors</div><p>7/13/20% halts and LULD slow panics but don't stop them — 2020 still fell 34% in 33 days.</p></div>
+  <div class="sum-card gold"><div class="sc-title">2026: loosening phase</div><p>Bank leverage cut, SEC disclosure lighter, courts constraining agencies. Fewer brakes if stress arrives.</p></div>
+  <div class="sum-card green"><div class="sc-title">Trader takeaway</div><p>Recoveries since 1987 have been faster, partly thanks to these backstops — but size positions for drawdowns, not for the rescue.</p></div>
+</div>
+
+<h2>Sources</h2>
+<ul class="sources">
+  <li><a href="https://spglobal.com/spdji/en/commentary/article/us-equities-market-attributes">S&amp;P Dow Jones Indices — April 2025 market attributes</a></li>
+  <li><a href="https://finance.yahoo.com/news/p-500-recovered-losses-215247252.html">AP — How the S&amp;P 500 recovered its 2025 losses</a></li>
+  <li><a href="https://www.ssga.com/hk/en/institutional/insights/mind-on-the-market-16-november-2026">State Street — Mind on the Market, Nov 16, 2026</a></li>
+  <li><a href="https://www.fool.com/investing/2026/04/08/sp-500-pullback-bear-market-unique-76-years-data">Motley Fool — 2026 pullback after Iran war</a></li>
+  <li><a href="https://www.federalreserve.gov/newsevents/pressreleases/bcreg20251125b.htm">Federal Reserve — eSLR final rule, Nov 25, 2025</a></li>
+  <li><a href="https://www.lw.com/en/insights/2025/07/the-genius-act-of-2025-stablecoin-legislation-adopted-in-the-us">Latham &amp; Watkins — The GENIUS Act of 2025</a></li>
+  <li><a href="https://www.intelligize.com/atkins-diet-for-sec-in-2026-includes-less-disclosure/">Intelligize — SEC 2026 disclosure agenda</a></li>
+  <li>Historical drawdown, law and rule dates: SEC, FDIC, NYSE and Federal Reserve History records.</li>
+</ul>
+
+<div class="disclaimer"><p><strong>DISCLAIMER:</strong> This analysis is produced by FazDane Analytics for informational and educational purposes only. It does not constitute financial advice, an offer to buy or sell securities, or a solicitation. Trading involves substantial risk of loss. Past performance is not indicative of future results. Always conduct your own due diligence and consult a licensed financial professional before making investment decisions.</p></div>
+<div class="footer"><span>FazDane Analytics</span> · © 2026 · <a href="../index.html" style="color:var(--accent)">Back to archive</a></div>
+</div>
+
+<script>
+{
+const R='var(--red)',G='var(--gold)';
+const D=[
+ {e:'1929–32',s:'Great Crash',d:86.2,m:302,c:R,t:'Margin speculation, bank runs, no disclosure rules',r:'Securities Act 1933, Glass-Steagall + FDIC 1933, Exchange Act 1934 (SEC)'},
+ {e:'1937–38',s:'Relapse',d:54.5,m:null,c:R,t:'Policy tightening, recession inside the Depression',r:'Maloney Act 1938 (NASD → FINRA); 1940 Investment Company & Advisers Acts'},
+ {e:'1968–70',s:'Back-office crisis',d:36.1,m:40,c:R,t:'Paperwork backlog sank ~100+ brokers',r:'SIPA 1970 created SIPC customer protection'},
+ {e:'1973–74',s:'Oil & stagflation',d:48.2,m:90,c:R,t:'Oil embargo, inflation, pension failures',r:'ERISA 1974, CFTC Act 1974, 1975 Securities Acts Amendments'},
+ {e:'1987',s:'Black Monday',d:33.5,m:23,c:R,t:'Portfolio insurance, −22.6% Dow day',r:'NYSE circuit breakers 1988, President\'s Working Group, Market Reform Act 1990'},
+ {e:'2000–02',s:'Dot-com / Enron',d:49.1,m:86,c:R,t:'Bubble valuations, accounting fraud, conflicted analysts',r:'Reg FD 2000, Sarbanes-Oxley 2002 (PCAOB), Global Research Settlement 2003'},
+ {e:'2007–09',s:'Global Financial Crisis',d:56.8,m:65,c:R,t:'Subprime leverage, shadow banks, OTC swaps',r:'TARP 2008, Dodd-Frank 2010 (FSOC, CFPB, Volcker, swaps clearing, stress tests), Basel III'},
+ {e:'2020',s:'COVID crash',d:33.9,m:6,c:R,t:'Pandemic shutdown, Treasury "dash for cash"',r:'Fed emergency facilities, CARES Act; Treasury central clearing rule 2023'},
+ {e:'2022',s:'Inflation bear',d:25.4,m:24,c:R,t:'Fastest Fed hikes in 40 years; crypto & SVB fallout',r:'T+1 settlement 2024; Basel III endgame proposed (later scaled back)'},
+ {e:'2025',s:'Tariff shock',d:18.9,m:4,c:G,t:'"Liberation Day" tariffs; stocks and bonds sold together',r:'No new rule — 90-day tariff pause on Apr 9 was the check'},
+ {e:'2026',s:'Iran war / semis',d:8.9,m:null,c:G,t:'Energy shock, then semiconductor correction (~−30%)',r:'Deregulatory phase continues (eSLR cut effective Apr 2026)'}
+];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const bars=document.getElementById('bars');
+function draw(mode){
+ const max=mode==='d'?90:302;
+ bars.innerHTML=D.map(x=>{
+  const v=mode==='d'?x.d:x.m;
+  const w=v==null?0:Math.max(1.5,(mode==='d'?v/max:Math.sqrt(v)/Math.sqrt(max))*100);
+  const lbl=v==null?(x.e==='2026'?'open':'n/a'):(mode==='d'?'−'+v+'%':v+' mo');
+  return `<div class="bar-row" tabindex="0"><div class="lab">${esc(x.e)}<span>${esc(x.s)}</span></div><div class="track"><div class="fill" style="width:${w}%;background:${x.c}"></div></div><div class="val">${lbl}</div><div class="tip"><strong>Trigger:</strong> ${esc(x.t)}<br><strong style="color:var(--accent)">Response:</strong> ${esc(x.r)}</div></div>`}).join('');
+}
+draw('d');
+const td=document.getElementById('t-depth'),tt=document.getElementById('t-time');
+td.addEventListener('click',()=>{td.setAttribute('aria-pressed','true');tt.setAttribute('aria-pressed','false');draw('d')});
+tt.addEventListener('click',()=>{tt.setAttribute('aria-pressed','true');td.setAttribute('aria-pressed','false');draw('t');});
+
+const E=[
+ [1929,'x','Great Crash','Dow −89% by 1932'],
+ [1933,'+','Securities Act · Glass-Steagall','Disclosure for new issues; FDIC deposit insurance; bank/securities split'],
+ [1934,'+','Securities Exchange Act','Creates the SEC; margin limits'],
+ [1937,'x','1937 relapse','S&P −54%'],
+ [1938,'+','Maloney Act','NASD self-regulator (today FINRA)'],
+ [1940,'+','Investment Co. & Advisers Acts','Mutual fund & adviser rules'],
+ [1970,'+','SIPA','SIPC protects brokerage customers'],
+ [1973,'x','1973–74 bear','S&P −48%'],
+ [1974,'+','ERISA · CFTC Act','Pension protection; futures regulator'],
+ [1980,'-','DIDMCA','Deposit-rate ceilings phased out'],
+ [1982,'-','Garn-St Germain','S&L lending loosened → S&L crisis'],
+ [1987,'x','Black Monday','Dow −22.6% in one day'],
+ [1988,'+','Circuit breakers · PWG','First trading halts; Working Group on markets'],
+ [1999,'-','Gramm-Leach-Bliley','Repeals Glass-Steagall affiliation limits'],
+ [2000,'-','CFMA','OTC derivatives largely exempted'],
+ [2000,'x','Dot-com bust','Nasdaq −78%'],
+ [2002,'+','Sarbanes-Oxley','CEO certification; PCAOB audits'],
+ [2004,'-','SEC CSE program','Broker-dealer leverage limits relaxed'],
+ [2008,'x','Global Financial Crisis','S&P −57%'],
+ [2010,'+','Dodd-Frank','FSOC, CFPB, Volcker Rule, swaps clearing, stress tests'],
+ [2010,'x','Flash Crash','Dow −9% intraday in minutes'],
+ [2012,'+','LULD · Consolidated Audit Trail','Single-stock bands; order tracking'],
+ [2018,'-','EGRRCPA','SIFI threshold $50B → $250B'],
+ [2020,'x','COVID crash','S&P −34% in 33 days'],
+ [2023,'+','Treasury clearing rule','Central clearing for Treasuries'],
+ [2023,'x','SVB failure','Bank run; Fed BTFP backstop'],
+ [2024,'+','T+1 settlement','Shorter settlement after meme-stock squeeze'],
+ [2024,'-','Loper Bright · Jarkesy','Courts curb agency power'],
+ [2025,'x','Tariff shock','S&P −18.9% (close)'],
+ [2025,'+','GENIUS Act','First federal stablecoin regime'],
+ [2025,'-','eSLR cut','Largest-bank leverage buffer reduced'],
+ [2026,'-','SEC reset','Lighter disclosure; climate rule rescission proposed']
+];
+document.getElementById('spine').innerHTML=E.map(([y,k,a,b])=>{
+ const card=`<div class="card ${k==='-'?'L':'R'}"><b>${esc(a)}</b>${esc(b)}</div>`;
+ if(k==='x')return `<div class="ev crash"><div></div><div class="yr">${y}</div><div class="card R" style="border-left-color:var(--red)"><b style="color:var(--red)">${esc(a)}</b>${esc(b)}</div></div>`.replace('<b style="color:var(--red)">','<b class="cx" style="color:var(--red)">');
+ return k==='-'?`<div class="ev"><div>${card}</div><div class="yr">${y}</div><div></div></div>`:`<div class="ev"><div></div><div class="yr">${y}</div><div>${card}</div></div>`;
+}).join('');
+const st=document.createElement('style');st.textContent='.ev .R b.cx::before{content:"● ";color:var(--red)}';document.head.appendChild(st);
+
+const CK={'1929–32':'SEC as market cop; mandatory disclosure; deposit insurance','1937–38':'Industry self-regulation under SEC oversight','1968–70':'Customer assets protected if a broker fails','1973–74':'Federal pension standards; futures oversight; national market system','1987':'Trading halts; cross-agency coordination','2000–02':'Auditor oversight; executive accountability for financials','2007–09':'Systemic-risk council; annual bank stress tests; living wills','2020':'Fed as market-maker of last resort; Treasury market plumbing','2022':'Faster settlement cuts counterparty risk','2025':'Market feedback forced a policy reversal','2026':'Courts and Congress now constrain agencies more'};
+document.getElementById('eras').innerHTML=D.map(x=>`<tr><td class="era">${esc(x.e)} · ${esc(x.s)}</td><td class="price-cell" style="color:${x.c}">−${x.d}%</td><td>${esc(x.t)}</td><td>${esc(x.r)}</td><td>${esc(CK[x.e]||'')}</td></tr>`).join('');
+
+const L=[
+ ['Flash Crash → single-stock breakers',0.1],['Black Monday → NYSE breakers',1.0],['1937 peak → Maloney Act',1.3],['1973 peak → ERISA',1.7],['Lehman → Dodd-Frank',1.8],['1968 peak → SIPA',2.0],['Dot-com peak → Sarbanes-Oxley',2.3],['Meme squeeze → T+1',3.3],['2020 Treasury dash → clearing rule',3.8],['1929 crash → Exchange Act',4.7]
+];
+document.getElementById('lag').innerHTML=L.map(([a,v])=>`<div class="bar-row" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 54px"><div class="lab">${esc(a)}</div><div class="track"><div class="fill" style="width:${v/5*100}%;background:var(--accent2)"></div></div><div class="val">${v} yr</div></div>`).join('');
+
+new MutationObserver(()=>{}).observe(document.body,{childList:true});
+for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}
+}
+</script>
+</body>
+</html>
